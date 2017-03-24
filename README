@@ -1,0 +1,6 @@
+Redux of my CS345H's Scala-Chef implementation.
+https://github.com/l-hoang/scala-chef
+
+Done to better organize the code into different files instead of having most
+of it in 1 file (making it extremely hard to read/understand). Also done to 
+clean up some of the DSL.
