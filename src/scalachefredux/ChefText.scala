@@ -34,10 +34,15 @@ class ChefText {
     var endLine = -1
 
     def setStartLine(s: Int) = {
+    /* Set the start line of a function. It's the first line that the function
+     * needs to run */
       startLine = s
     }
 
     def setEndLine(e: Int) = {
+    /* Set the end line of a function. It's the first line of the NEXT function
+     * (or a line that doesn't correspond to any function if it's the
+     * end of the Chef program. */
       endLine = e
     }
   }
@@ -49,4 +54,30 @@ class ChefText {
   val lines = new mutable.HashMap[Int, ChefLine]
   // Maps function names to start/end
   val functions = new mutable.HashMap[String, FunctionInfo]
+
+  def functionStart(functionName: String) = {
+  /* Given a function name, mark the current line number as the start line
+   * of the function */
+    if (functions contains functionName) {
+      throw new RuntimeException("ERROR: Redeclaring an already existing recipe.")
+    }
+
+    functions(functionName) = new FunctionInfo
+    functions(functionName) setStartLine currentLine
+    currentLine += 1
+  }
+
+  def functionEnd(functionName: String) = {
+  /* Given a function name, mark the current line number as the end line
+   * of the function */
+    // Note if the function doesn't exist, it will fail (which is fine)
+    functions(functionName) setEndLine currentLine
+  }
+
+  def consistencyCheck = {
+  /* Make sure all of the lines/info in the text are consistent (e.g. all 
+   * functions have a start and an end) */
+
+    // TODO
+  }
 }
