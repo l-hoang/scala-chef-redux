@@ -25,7 +25,7 @@ SOFTWARE.
 /* This file holds helper classes that should be globally visible. They aid
  * in various functions. */
 
-class ChefIngredient(name: String, interpretation: IState) = {
+class ChefIngredient(name: String, interpretation: IState) {
 /* Class that represents a Chef ingredient. Has the ingredient quantity as well
  * as its interpretation. */
 
