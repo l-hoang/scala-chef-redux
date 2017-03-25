@@ -62,7 +62,7 @@ class LineBuilder {
     }
   }
 
-  def assertMethod = {
+  def assertLimbo = {
   /* Limbo assertion */
     mode match {
       case M_LIMBO =>
