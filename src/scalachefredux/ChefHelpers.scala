@@ -25,6 +25,8 @@ SOFTWARE.
 /* This file holds helper classes that should be globally visible. They aid
  * in various functions. */
 
+package scalachefredux
+
 class ChefIngredient(name: String, interpretation: IState) {
 /* Class that represents a Chef ingredient. Has the ingredient quantity as well
  * as its interpretation. */
@@ -49,6 +51,10 @@ class ChefIngredient(name: String, interpretation: IState) {
   /* Change the intrepretation of this ingredient */
     currentInterpretation = newInterpretation
   }
+
+  /////////////
+  // Getters //
+  /////////////
 
   def asNumber = {
   /* Return the value of this ingredient as a number */
