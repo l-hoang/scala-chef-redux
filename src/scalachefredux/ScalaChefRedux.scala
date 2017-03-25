@@ -36,19 +36,24 @@ class ScalaChefRedux {
 
   object Title {
     def -(recipeTitle: String) = {
-      lineBuilder.assertTitle
+      if (recipeTitle == "") {
+        throw new RuntimeException("ERROR: Recipe name can't be empty")
+      }
 
       // Tell program text to save the current line as the start of a new
       // function
-      programText newFunction recipeTitle
+      programText functionStart recipeTitle
 
-      // go into limbo mode (next thing should be ingredients)
+      // go into limbo mode (next thing should be Ingredients declaration)
       lineBuilder.modeLimbo
     }
   }
 
   object Take {
+    // a, an, the, some follow take
+    def a(ingredient: String) = {
 
+    }
   }
 
   object Put {

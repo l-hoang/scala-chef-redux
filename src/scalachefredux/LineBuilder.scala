@@ -24,6 +24,9 @@ class LineBuilder {
   // Start with no op
   var currentOp: ChefOp = E_NONE
 
+  // The current recipe being parsed by the line builder
+  var currentRecipe = ""
+
   // Various things that need to be used to build lines
   var heldString = ""
   var heldNumber = -1
@@ -109,6 +112,10 @@ class LineBuilder {
     mode = M_LIMBO
   }
 
+  def setCurrentRecipe(recipe: String) = {
+  /* Set the current recipe being parsed by the program */
+    currentRecipe = recipe
+  }
 
   def setOp(newOp: ChefOp) = {
   /* Change the current operation that the line builder is building */
@@ -137,7 +144,8 @@ class LineBuilder {
   }
 
   def clearData = {
-  /* Clear all currently held line state by resetting it to some default value. */
+  /* Clear all currently held line state (except the title) by resetting it 
+   * to some default value. */
     currentOp = E_NONE
     heldString = ""
     heldNumber = -1
@@ -151,6 +159,10 @@ class LineBuilder {
   /* Methods used to get things from the line builder */
 
   def finishLine = {
+  /* Return a line with the appropriate information filled in. */
+    // TODO
 
+    // clear the data in preparation for the next line
+    clearData
   }
 }

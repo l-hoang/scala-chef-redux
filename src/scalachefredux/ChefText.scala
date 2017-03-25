@@ -50,10 +50,24 @@ class ChefText {
   // start at line 1
   var currentLine = 1 
 
-  // Maps line numbers to actual ChefLines
+  // current function being parsed
+  var currentFunction = ""
+
+  // Maps line numbers to actual ChefLines operations
   val lines = new mutable.HashMap[Int, ChefLine]
   // Maps function names to start/end
   val functions = new mutable.HashMap[String, FunctionInfo]
+
+
+  ///////////
+  // Lines //
+  ///////////
+  /* Functions to deal with saving Chef Lines and such */
+
+  ///////////////
+  // Functions //
+  ///////////////
+  /* Functions that deal with the functions of a Chef Program */
 
   def functionStart(functionName: String) = {
   /* Given a function name, mark the current line number as the start line
@@ -62,17 +76,29 @@ class ChefText {
       throw new RuntimeException("ERROR: Redeclaring an already existing recipe.")
     }
 
+    // if this is not the first function being declared, save the end of the
+    // last function as the current line number
+    if (!(currentFunction == "")) {
+      functions(functionName) setEndLine currentLine
+    }
+
     functions(functionName) = new FunctionInfo
     functions(functionName) setStartLine currentLine
+    currentFunction = functionName
+
     currentLine += 1
   }
 
-  def functionEnd(functionName: String) = {
-  /* Given a function name, mark the current line number as the end line
-   * of the function */
-    // Note if the function doesn't exist, it will fail (which is fine)
+  def endFunction = {
+  /* Called at the end of parsing. Deals with saving the end of the last 
+   * function. */
     functions(functionName) setEndLine currentLine
   }
+
+  ///////////
+  // Other //
+  ///////////
+  /* Things that deal with other things that should/need to be done */
 
   def consistencyCheck = {
   /* Make sure all of the lines/info in the text are consistent (e.g. all 
