@@ -1,6 +1,5 @@
 package scalachefredux
 
-
 /* Chef operations */
 abstract sealed class ChefOp
 
