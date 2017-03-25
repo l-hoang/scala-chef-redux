@@ -79,7 +79,7 @@ class ChefText {
     // if this is not the first function being declared, save the end of the
     // last function as the current line number
     if (!(currentFunction == "")) {
-      functions(functionName) setEndLine currentLine
+      functions(currentFunction) setEndLine currentLine
     }
 
     functions(functionName) = new FunctionInfo
@@ -92,7 +92,7 @@ class ChefText {
   def endFunction = {
   /* Called at the end of parsing. Deals with saving the end of the last 
    * function. */
-    functions(functionName) setEndLine currentLine
+    functions(currentFunction) setEndLine currentLine
   }
 
   ///////////
