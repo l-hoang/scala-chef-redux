@@ -22,3 +22,11 @@ case object E_SET extends ChefOp
 case object E_SERVE extends ChefOp
 case object E_REFRIGERATE extends ChefOp
 case object E_SERVES extends ChefOp
+
+
+/* Possible ingredient states */
+abstract sealed class IState
+
+case object I_DRY extends IState
+case object I_LIQUID extends IState
+case object I_EITHER extends IState
