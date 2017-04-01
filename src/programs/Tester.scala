@@ -31,27 +31,20 @@ object Tester extends ScalaChefRedux {
   def main(args: Array[String]) = {
     Title - "hello thar";
 
+    // add some ingredients
     Ingredients;
 
-    //// add some ingredient
-    //72 G ('haricot_beans) 
-    //
-    //101 ('eggs) 
-    //  
-    //108 G ('lard) 
+    1 ct "tofu";
+    72 g "haricot_beans" ;
+    101 ct "eggs";
+    108 g "lard";
+    111 cups "oil";
+    32 ct "zucchinis";
+    119 ml "water";
+    114 g "red_salmon";
+    100 g "dijon_mustard";
+    33 ct "potatoes";
 
-    //111 CUPS ('oil) 
-
-    //32 ('zucchinis) 
-
-    //119 ML ('water) 
-
-    //114 G ('red_salmon) 
-
-    //100 G ('dijon_mustard) 
-
-    //33 ('potatoes) 
-
-    //Method ;
+    Method;
   }
 }
