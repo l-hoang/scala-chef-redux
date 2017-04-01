@@ -27,15 +27,21 @@ SOFTWARE.
 
 package scalachefredux
 
-class ChefIngredient(name: String, interpretation: IState) {
+class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1) {
 /* Class that represents a Chef ingredient. Has the ingredient quantity as well
  * as its interpretation. */
 
   var ingredientName = name
   var currentInterpretation = interpretation
 
+
   var initialized = false
   var quantity = 0
+
+  if (initValue != -1) {
+    initialized = true
+    quantity = initValue
+  }
 
   /////////////
   // Setters //
