@@ -133,44 +133,50 @@ class ScalaChefRedux {
 
     /* Ingredients classified as dry */
 
-    def g(ingredient: String) = 
-      lineBuilder setIngredient new ChefIngredient(ingredient, I_DRY, num)
+    def g(ingredient: String) = {
+      programText addIngredient (new ChefIngredient(ingredient, I_DRY, num))
+    }
 
-    def kg(ingredient: String) = 
-      lineBuilder setIngredient new ChefIngredient(ingredient, I_DRY, num)
+    def kg(ingredient: String) = {
+      programText addIngredient (new ChefIngredient(ingredient, I_DRY, num))
+    }
 
     def pinch(ingredient: String) = {
       if (num == 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_DRY, num)
+        
+        programText addIngredient (new ChefIngredient(ingredient, I_DRY, num))
       else
         throw new RuntimeException("ERROR: A pinch means a value of 1")
     }
 
     def pinches(ingredient: String) = {
       if (num > 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_DRY, num)
+        
+        programText addIngredient (new ChefIngredient(ingredient, I_DRY, num))
       else
         throw new RuntimeException("ERROR: Pinches means a value greater than 1")
     }
 
     /* Ingredients classified as liquid */
 
-    def ml(ingredient: String) = 
-      lineBuilder setIngredient new ChefIngredient(ingredient, I_LIQUID, num)
+    def ml(ingredient: String) = {
+      programText addIngredient (new ChefIngredient(ingredient, I_LIQUID, num))
+    } 
 
-    def l(ingredient: String) = 
-      lineBuilder setIngredient new ChefIngredient(ingredient, I_LIQUID, num)
+    def l(ingredient: String) = {
+      programText addIngredient (new ChefIngredient(ingredient, I_LIQUID, num))
+    }
 
     def dash(ingredient: String) = {
       if (num == 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_LIQUID, num)
+        programText addIngredient (new ChefIngredient(ingredient, I_LIQUID, num))
       else
         throw new RuntimeException("ERROR: A dash means a value of 1")
     }
 
     def dashes(ingredient: String) = {
       if (num > 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_LIQUID, num)
+        programText addIngredient (new ChefIngredient(ingredient, I_LIQUID, num))
       else
         throw new RuntimeException("ERROR: Dashes means a value greater than 1")
     }
@@ -179,14 +185,14 @@ class ScalaChefRedux {
 
     def cup(ingredient: String) = {
       if (num == 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_EITHER, num)
+        programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
         throw new RuntimeException("ERROR: Cup means a value of 1")
     }
 
     def cups(ingredient: String) = {
       if (num > 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_EITHER, num)
+        programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
         throw new RuntimeException("ERROR: Cups means a value greater than 1")
     }
@@ -194,35 +200,36 @@ class ScalaChefRedux {
 
     def teaspoon(ingredient: String) = {
       if (num == 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_EITHER, num)
+        programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
         throw new RuntimeException("ERROR: Teaspoon means a value of 1")
     }
 
     def teaspoons(ingredient: String) = {
       if (num > 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_EITHER, num)
+        programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
         throw new RuntimeException("ERROR: Teaspoons means a value greater than 1")
     }
 
     def tablespoon(ingredient: String) = {
       if (num == 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_EITHER, num)
+        programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
         throw new RuntimeException("ERROR: Tablespoon means a value of 1")
     }
 
     def tablespoons(ingredient: String) = {
       if (num > 1) 
-        lineBuilder setIngredient new ChefIngredient(ingredient, I_EITHER, num)
+        programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
         throw new RuntimeException("ERROR: Tablespoons means a value greater than 1")
     }
 
     // stands for "count"
-    def ct(ingredient: String) = 
-      lineBuilder setIngredient new ChefIngredient(ingredient, I_EITHER, num)
+    def ct(ingredient: String) = {
+      programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
+    }
 
   }
 

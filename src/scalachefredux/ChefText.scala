@@ -69,6 +69,19 @@ class ChefText {
   ///////////
   /* Functions to deal with saving Chef Lines and such */
 
+
+  /* Add a starting ingredient to the current function */
+  def addIngredient(newIngredient: ChefIngredient) = {
+    val ingredientName = newIngredient.ingredientName
+    
+    if (recipeIngredients(currentFunction) contains ingredientName) {
+      throw new 
+      RuntimeException("ERROR: Redeclaring an already existing ingredient.")
+    }
+
+    recipeIngredients(currentFunction)(ingredientName) = newIngredient
+  }
+
   ///////////////
   // Functions //
   ///////////////
@@ -90,8 +103,10 @@ class ChefText {
     functions(functionName) = new FunctionInfo
     functions(functionName) setStartLine currentLine
     currentFunction = functionName
-
     currentLine += 1
+
+    // initialize start ingredients for this recipe
+    recipeIngredients(functionName) = new mutable.HashMap[String, ChefIngredient]
   }
 
   def endFunction = {
