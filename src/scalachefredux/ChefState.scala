@@ -22,11 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package programs
+package scalachefredux
 
 import scala.collection.mutable
 
 class ChefState {
 /* Holds current program state */
-
+  // Maps recipe to the ingredients they have/start with
+  val recipeIngredients = new mutable.HashMap[String, 
+                          mutable.HashMap[String, ChefIngredient]]
 }
