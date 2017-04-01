@@ -23,6 +23,10 @@ SOFTWARE.
 */
 package scalachefredux
 
+
+import scala.language.implicitConversions
+import scala.language.dynamics
+
 /* Extend this class to start your DSL writing */
 class ScalaChefRedux {
 
@@ -119,19 +123,31 @@ class ScalaChefRedux {
 
   }
 
+  /* Integers will be converted into this class, and the class will then
+   * grab ingredient strings. */
+  class IngredientGetter(num: Int) extends Dynamic {
+
+    // stands for "count"
+    def ct(ingredient: String) = 
+      lineBuilder setIngredient new ChefIngredient(ingredient, I_EITHER)
+    
+  }
+
+  implicit def int2IngredientGetter(i: Int) = new IngredientGetter(i)
+
+
   ///////////////////////
   // Mode change lines //
   ///////////////////////
   /* The purpose of the following is to signify a change in the current "mode"
    * a Chef program is in: mainly Title, Ingredient, or Method */
-  def Ingredients {
   /* Mode change to ingredient */
+  def Ingredients {
     lineBuilder.modeIngredient
-
   }
 
-  def Method {
   /* Mode change to method */
+  def Method {
     lineBuilder.modeMethod
   }
 }
