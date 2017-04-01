@@ -31,9 +31,8 @@ class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1) 
 /* Class that represents a Chef ingredient. Has the ingredient quantity as well
  * as its interpretation. */
 
-  var ingredientName = name
+  def ingredientName = name
   var currentInterpretation = interpretation
-
 
   var initialized = false
   var quantity = 0
