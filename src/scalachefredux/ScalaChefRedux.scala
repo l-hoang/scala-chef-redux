@@ -134,24 +134,28 @@ class ScalaChefRedux {
     /* Ingredients classified as dry */
 
     def g(ingredient: String) = {
+      lineBuilder.assertIngredient
       programText addIngredient (new ChefIngredient(ingredient, I_DRY, num))
     }
 
     def kg(ingredient: String) = {
+      lineBuilder.assertIngredient
       programText addIngredient (new ChefIngredient(ingredient, I_DRY, num))
     }
 
     def pinch(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num == 1) 
-        
         programText addIngredient (new ChefIngredient(ingredient, I_DRY, num))
       else
         throw new RuntimeException("ERROR: A pinch means a value of 1")
     }
 
     def pinches(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num > 1) 
-        
         programText addIngredient (new ChefIngredient(ingredient, I_DRY, num))
       else
         throw new RuntimeException("ERROR: Pinches means a value greater than 1")
@@ -160,14 +164,18 @@ class ScalaChefRedux {
     /* Ingredients classified as liquid */
 
     def ml(ingredient: String) = {
+      lineBuilder.assertIngredient
       programText addIngredient (new ChefIngredient(ingredient, I_LIQUID, num))
     } 
 
     def l(ingredient: String) = {
+      lineBuilder.assertIngredient
       programText addIngredient (new ChefIngredient(ingredient, I_LIQUID, num))
     }
 
     def dash(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num == 1) 
         programText addIngredient (new ChefIngredient(ingredient, I_LIQUID, num))
       else
@@ -175,6 +183,8 @@ class ScalaChefRedux {
     }
 
     def dashes(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num > 1) 
         programText addIngredient (new ChefIngredient(ingredient, I_LIQUID, num))
       else
@@ -184,6 +194,8 @@ class ScalaChefRedux {
     /* Ingredients classified as either */
 
     def cup(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num == 1) 
         programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
@@ -191,6 +203,8 @@ class ScalaChefRedux {
     }
 
     def cups(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num > 1) 
         programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
@@ -199,6 +213,8 @@ class ScalaChefRedux {
 
 
     def teaspoon(ingredient: String) = {
+        lineBuilder.assertIngredient
+
       if (num == 1) 
         programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
@@ -206,6 +222,8 @@ class ScalaChefRedux {
     }
 
     def teaspoons(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num > 1) 
         programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
@@ -213,6 +231,8 @@ class ScalaChefRedux {
     }
 
     def tablespoon(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num == 1) 
         programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
@@ -220,6 +240,8 @@ class ScalaChefRedux {
     }
 
     def tablespoons(ingredient: String) = {
+      lineBuilder.assertIngredient
+
       if (num > 1) 
         programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
       else
@@ -228,6 +250,7 @@ class ScalaChefRedux {
 
     // stands for "count"
     def ct(ingredient: String) = {
+      lineBuilder.assertIngredient
       programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
     }
 
