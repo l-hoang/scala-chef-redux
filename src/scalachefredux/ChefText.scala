@@ -53,6 +53,11 @@ class ChefText {
   // current function being parsed
   var currentFunction = ""
 
+  // Maps recipe to the ingredients they have/start with
+  val recipeIngredients = new mutable.HashMap[String, 
+                          mutable.HashMap[String, ChefIngredient]]
+
+
   // Maps line numbers to actual ChefLines operations
   val lines = new mutable.HashMap[Int, ChefLine]
   // Maps function names to start/end
