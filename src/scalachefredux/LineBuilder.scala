@@ -26,6 +26,7 @@ class LineBuilder {
   // The current recipe being parsed by the line builder
   var currentRecipe = ""
   
+  // TODO kill if not needed
   case object NULLINGREDIENT extends ChefIngredient("null", I_NULL)
   
   // Various things that need to be used to build lines
@@ -33,6 +34,7 @@ class LineBuilder {
   var heldNumber = -1
   var stackNumber1 = -1 
   var stackNumber2 = -1
+  // TODO kill if not needed
   var heldIngredient: ChefIngredient = NULLINGREDIENT
 
 
@@ -134,6 +136,7 @@ class LineBuilder {
   def setStackNumber2(newNumber: Int) = stackNumber2 = newNumber
 
   /* Set the held ingredient. */
+  // TODO kill if not needed
   def setIngredient(newIngredient: ChefIngredient) = {
     assertIngredient
     heldIngredient = newIngredient
@@ -143,7 +146,7 @@ class LineBuilder {
    * to some default value. */
   def clearData = {
     currentOp = E_NONE
-    heldIngredient = NULLINGREDIENT
+    heldIngredient = NULLINGREDIENT // TODO kill if not needed
     heldString = ""
     heldNumber = -1
     stackNumber1 = -1
