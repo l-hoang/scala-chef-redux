@@ -30,3 +30,4 @@ abstract sealed class IState
 case object I_DRY extends IState
 case object I_LIQUID extends IState
 case object I_EITHER extends IState
+case object I_NULL extends IState
