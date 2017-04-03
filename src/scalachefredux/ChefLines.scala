@@ -17,5 +17,7 @@ case object Break extends ChefLine // Set
 
 case class PrintStacks(num: Int) extends ChefLine // Serves
 
+case class Useless extends ChefLine // To appease type checker
+
 // TODO
 
