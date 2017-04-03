@@ -122,6 +122,7 @@ class LineBuilder {
 
   /* Change the current operation that the line builder is building */
   def setOp(newOp: ChefOp) = {
+    assertMethod
     // TODO make it so certain ops can't be changed (i.e. most of them)
     currentOp = newOp
   }
@@ -162,7 +163,14 @@ class LineBuilder {
   def finishLine = {
     // TODO
 
+    val toReturn: ChefLine = Useless
+
+    currentOp match {
+      case E_PUT => Push(heldString, stackNumber1)
+      case _ => throw new RuntimeException("Valid op not set for finish line")
+    }
     // clear the data in preparation for the next line
     clearData
+    toReturn
   }
 }
