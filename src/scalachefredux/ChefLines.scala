@@ -5,8 +5,8 @@ package scalachefredux
 abstract sealed class ChefLine
 
 case class Read(ingredient: String) extends ChefLine // Take
-case class Push(bowlNumber: Int) extends ChefLine // Put
-case class Pop(bowlNumber: Int) extends ChefLine // Fold
+case class Push(ingredient: String, bowlNumber: Int) extends ChefLine // Put
+case class Pop(bowlNumber: Int, ingredient: String) extends ChefLine // Fold
 
 case class Liquify(ingredient: String) extends ChefLine // Liquify
 case class LiquifyBowl(bowlNumber: Int) extends ChefLine // Liquify
