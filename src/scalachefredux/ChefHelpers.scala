@@ -27,6 +27,8 @@ SOFTWARE.
 
 package scalachefredux
 
+import scala.collection.mutable
+
 class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1) {
 /* Class that represents a Chef ingredient. Has the ingredient quantity as well
  * as its interpretation. */
@@ -82,5 +84,21 @@ class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1) 
     if (!initialized) {
       throw new RuntimeException("ERROR: ingredient not initialized")
     }
+  }
+}
+
+/* Contains helper functions that are used throughout Scala-Chef redux */
+object HelperFunctions {
+  /* Returns a deep copy of a mutable.HashMap */
+  def deepCopy[A, B](toCopy: mutable.HashMap[A, B]) = {
+    val mapIterator = toCopy.keys
+  
+    val copy = new mutable.HashMap[A, B] 
+  
+    for (key <- mapIterator) {
+      copy(key) = toCopy(key)
+    }
+  
+    copy
   }
 }
