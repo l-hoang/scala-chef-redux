@@ -23,7 +23,6 @@ case object E_SERVE extends ChefOp
 case object E_REFRIGERATE extends ChefOp
 case object E_SERVES extends ChefOp
 
-
 /* Possible ingredient states */
 abstract sealed class IState
 
@@ -31,3 +30,10 @@ case object I_DRY extends IState
 case object I_LIQUID extends IState
 case object I_EITHER extends IState
 case object I_NULL extends IState
+
+/* Words represented as objects for parsing */
+abstract sealed class MixingWord
+object mixing extends MixingWord
+
+abstract sealed class BakingWord
+object baking extends BakingWord
