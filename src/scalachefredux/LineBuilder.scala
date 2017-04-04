@@ -86,9 +86,9 @@ class LineBuilder {
   }
 
   /* Make sure the mode isn't end mode */
-  def assertNotEnd = {
+  def assertNotDone = {
     currentOp match {
-      case E_DONE => throw new RuntimeException("Assert not end failed")
+      case E_DONE => throw new RuntimeException("Assert not done failed")
       case _ => 
     }
   }
@@ -100,7 +100,7 @@ class LineBuilder {
 
   /* Switch to title mode */
   def modeTitle = {
-    assertNotEnd
+    assertNotDone
     assertNoOp
     clearData
     mode = M_TITLE
@@ -108,7 +108,7 @@ class LineBuilder {
 
   /* Switch to ingredient mode */
   def modeIngredient = {
-    assertNotEnd
+    assertNotDone
     assertLimbo
     assertNoOp
     clearData
@@ -117,7 +117,7 @@ class LineBuilder {
 
   /* Switch to method mode */
   def modeMethod = {
-    assertNotEnd
+    assertNotDone
     assertNoOp
     clearData
     mode = M_METHOD
@@ -125,7 +125,7 @@ class LineBuilder {
 
   /* Switch to limbo mode (i.e. needs to switch modes) */
   def modeLimbo = {
-    assertNotEnd
+    assertNotDone
     assertNoOp
     clearData
     mode = M_LIMBO
