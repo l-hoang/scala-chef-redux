@@ -32,8 +32,14 @@ case object I_EITHER extends IState
 case object I_NULL extends IState
 
 /* Words represented as objects for parsing */
+abstract sealed class TheWord
+object the extends TheWord
+
 abstract sealed class MixingWord
 object mixing extends MixingWord
 
 abstract sealed class BakingWord
 object baking extends BakingWord
+
+abstract sealed class BowlWord
+object bowl extends BowlWord
