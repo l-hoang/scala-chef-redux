@@ -70,6 +70,14 @@ class ChefText {
   /* Functions to deal with saving Chef Lines and such */
 
 
+
+  /* Adds a Chef Line to the program text. */
+  def addLine(newLine: ChefLine) = {
+    lines(currentLine) = newLine 
+    println(newLine)
+    currentLine += 1
+  }
+
   /* Add a starting ingredient to the current function */
   def addIngredient(newIngredient: ChefIngredient) = {
     val ingredientName = newIngredient.ingredientName
@@ -103,7 +111,7 @@ class ChefText {
     functions(functionName) = new FunctionInfo
     functions(functionName) setStartLine currentLine
     currentFunction = functionName
-    currentLine += 1
+    //currentLine += 1 // TODO do I need to add a line? I shouldn't, right?
 
     // initialize start ingredients for this recipe
     recipeIngredients(functionName) = new mutable.HashMap[String, ChefIngredient]
