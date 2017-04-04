@@ -33,16 +33,16 @@ class ChefText {
     var startLine = -1
     var endLine = -1
 
-    def setStartLine(s: Int) = {
     /* Set the start line of a function. It's the first line that the function
      * needs to run */
+    def setStartLine(s: Int) = {
       startLine = s
     }
 
-    def setEndLine(e: Int) = {
     /* Set the end line of a function. It's the first line of the NEXT function
      * (or a line that doesn't correspond to any function if it's the
      * end of the Chef program. */
+    def setEndLine(e: Int) = {
       endLine = e
     }
   }
@@ -93,9 +93,9 @@ class ChefText {
   ///////////////
   /* Functions that deal with the functions of a Chef Program */
 
-  def functionStart(functionName: String) = {
   /* Given a function name, mark the current line number as the start line
    * of the function */
+  def functionStart(functionName: String) = {
     if (functions contains functionName) {
       throw new RuntimeException("ERROR: Redeclaring an already existing recipe.")
     }
@@ -115,9 +115,9 @@ class ChefText {
     recipeIngredients(functionName) = new mutable.HashMap[String, ChefIngredient]
   }
 
-  def endFunction = {
   /* Called at the end of parsing. Deals with saving the end of the last 
    * function. */
+  def endFunction = {
     functions(currentFunction) setEndLine currentLine
   }
 
@@ -126,16 +126,17 @@ class ChefText {
   ///////////
   /* Things that deal with other things that should/need to be done */
 
-  def consistencyCheck = {
   /* Make sure all of the lines/info in the text are consistent (e.g. all 
    * functions have a start and an end) */
+  def consistencyCheck = {
 
     // TODO
   }
 
+  /* Print all the Chef lines contained in this object. */
   def printLines = {
     for (i <- 1 to currentLine) {
-      println("Line " + i + " " + lines(i))
+      println("Line " + i + ": " + lines(i))
     }
   }
 }
