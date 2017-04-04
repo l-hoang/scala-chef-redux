@@ -156,14 +156,14 @@ class ChefStack {
 
 /* Contains helper functions that are used throughout Scala-Chef redux */
 object HelperFunctions {
-  /* Returns a deep copy of a mutable.HashMap */
-  def deepCopy[A, B](toCopy: mutable.HashMap[A, B]) = {
+  /* Returns a deep copy of a mutable.HashMap holding ingredients */
+  def deepCopyIngredients(toCopy: mutable.HashMap[String, ChefIngredient]) = {
     val mapIterator = toCopy.keys
   
-    val copy = new mutable.HashMap[A, B] 
+    val copy = new mutable.HashMap[String, ChefIngredient] 
   
     for (key <- mapIterator) {
-      copy(key) = toCopy(key)
+      copy(key) = toCopy(key).deepCopy
     }
   
     copy
