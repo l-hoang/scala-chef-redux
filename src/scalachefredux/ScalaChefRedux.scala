@@ -410,14 +410,14 @@ class ScalaChefRedux {
   object Enjoy {
     def your(m: MealWord) = {
       // disable the line builder for good
-      lineBuilder.modeEnd
+      lineBuilder.modeDone
 
       // finish the last function
       programText.endFunction
 
-      // TODO
-      // pass the program text into the program state in order to begin running 
-      // the program
+      // run the program
+      val runner = new ChefRunner(programState, programText)
+      runner.run
     }
   }
 
