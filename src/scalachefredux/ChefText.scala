@@ -139,6 +139,10 @@ class ChefText {
     functions(functionName).getEndLine
   }
 
+  /* Return a copy of a recipe's starting ingredients */
+  def getStartingIngredients(functionName: String) = 
+    HelperFunctions.deepCopyIngredients(recipeIngredients(functionName))
+
   ///////////
   // Other //
   ///////////
