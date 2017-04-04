@@ -90,7 +90,7 @@ object Tester extends ScalaChefRedux {
     //add dry ingredients to bowl <>
     //liquify <thing>
     //liquify the <thing>
-    finish;
+    printLines;
   }
 
 }
