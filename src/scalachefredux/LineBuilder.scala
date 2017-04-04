@@ -9,6 +9,7 @@ class LineBuilder {
   case object M_INGREDIENT extends ParseMode
   case object M_METHOD extends ParseMode
   case object M_LIMBO extends ParseMode
+  case object M_END extends ParseMode
 
 
   /////////////////////
@@ -115,6 +116,14 @@ class LineBuilder {
     assertNoOp
     clearData
     mode = M_LIMBO
+  }
+
+  /* Switch to end mode (i.e. needs to switch to title mode if another 
+   * function exists) */
+  def modeEnd = {
+    assertNoOp
+    clearData
+    mode = M_END
   }
 
   /* Set the current recipe being parsed by the program */
