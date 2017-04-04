@@ -163,10 +163,10 @@ class LineBuilder {
   def finishLine = {
     // TODO
 
-    var toReturn: ChefLine = Useless
-
-    currentOp match {
-      case E_PUT => toReturn = Push(heldString, stackNumber1)
+    var toReturn: ChefLine = currentOp match {
+      case E_PUT => Push(heldString, stackNumber1)
+      case E_LIQUEFY => Liquefy(heldString)
+      case E_LIQUEFY_CONTENTS => LiquefyContents(stackNumber1)
       case _ => throw new RuntimeException("Valid op not set for finish line")
     }
     // clear the data in preparation for the next line
