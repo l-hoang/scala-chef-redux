@@ -40,6 +40,11 @@ class ChefState {
 
   var currentIngredients = new mutable.HashMap[String, ChefIngredient]
 
+
+  def assertSetRecipe = if (!recipeSet) {
+    throw new RuntimeException("ERROR: unset recipe")
+  }
+  
   /* Set the main recipe from which to start execution when you begin running
    * the program */
   def setMainRecipe(recipe: String) = {
@@ -54,6 +59,12 @@ class ChefState {
   /* Get the main recipe */
   def getMainRecipe = if (recipeSet) mainRecipe else 
     throw new RuntimeException("ERROR: trying to get unset main recipe")
+
+  /* Load the main recipe's ingredients (a copy at least) for use */
+  def initializeIngredients(text: ChefText) = {
+    assertSetRecipe
+    currentIngredients = text getStartingIngredients mainRecipe
+  }
 
   /* Push a given ingredient into a certain bowl */
   def pushToBowl(ingredient: String, bowlNumber: Int) =
