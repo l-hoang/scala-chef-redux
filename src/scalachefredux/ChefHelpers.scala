@@ -148,10 +148,10 @@ class ChefStack {
     }
   }
 
-  /* Return an iterator to the Java deque (order is same as popping it */
+  /* Return an iterator to the Java deque (order is same as popping it) */
   def iterator = javaDeque.iterator
-
-
+  /* Return an backward iterator to the Java deque (pop from bottom) */
+  def descendingIterator = javaDeque.descendingIterator
 }
 
 /* Contains helper functions that are used throughout Scala-Chef redux */
