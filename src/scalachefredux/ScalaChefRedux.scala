@@ -60,8 +60,51 @@ class ScalaChefRedux {
     }
   }
 
+  /* The push operation of the language. 
+   * Put the <ingredient> into mixing bowl <number>; */
   object Put {
+    def the(ingredient: String) = {
+      lineBuilder.assertMethod
+      // set ingredient + op
+      lineBuilder setString ingredient
+      lineBuilder setOp E_PUT
 
+      // return the into object
+      IntoGetter
+    }
+
+    // aliases for "the"
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
+
+    object IntoGetter {
+      /* "into mixing" leads into "bowl <number>" */
+      def into(m: MixingWord) = BowlGetter
+      /* "into the" leads into "mixing bowl" */
+      def into(t: TheWord) = MixingGetter
+    }
+
+    object MixingGetter {
+      def mixing(b: BowlWord) = {
+        lineBuilder setStackNumber1 1
+        programText addLine lineBuilder.finishLine
+      }
+    }
+
+    object BowlGetter {
+      /* bowl with number = into some particular stack */
+      def bowl(bowlNumber: Int) = {
+        lineBuilder setStackNumber1 bowlNumber
+        programText addLine lineBuilder.finishLine
+      }
+
+      /* bowl with no number = by default stack 1 */
+      def bowl = {
+        lineBuilder setStackNumber1 1
+        programText addLine lineBuilder.finishLine
+      }
+    }
   }
 
   object Fold {
@@ -253,7 +296,6 @@ class ScalaChefRedux {
       lineBuilder.assertIngredient
       programText addIngredient (new ChefIngredient(ingredient, I_EITHER, num))
     }
-
   }
 
   implicit def int2IngredientGetter(i: Int) = new IngredientGetter(i)
