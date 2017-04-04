@@ -25,11 +25,10 @@ package scalachefredux
 
 import scala.collection.mutable
 
-class ChefText {
 /* Holds Chef lines as they are build by the line builder */
-  
-  class FunctionInfo {
+class ChefText {
   /* Stores function start line/end line */
+  class FunctionInfo {
     var startLine = -1
     var endLine = -1
 
