@@ -162,7 +162,7 @@ class ChefText {
 
   /* Print all the Chef lines contained in this object. */
   def printLines = {
-    for (i <- 1 to currentLine) {
+    for (i <- 1 to (currentLine - 1)) {
       println("Line " + i + ": " + lines(i))
     }
   }
