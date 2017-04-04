@@ -81,7 +81,6 @@ object Tester extends ScalaChefRedux {
     Pour the contents of the mixing bowl into the baking dish; 
     Pour the contents of the mixing bowl into baking dish 2; 
 
-
     //take the "thing" from the refridge
     //take "thing" from fridge
     //fold the <thing> into bowl <num>
@@ -91,6 +90,7 @@ object Tester extends ScalaChefRedux {
     //add dry ingredients to bowl <>
     //liquify <thing>
     //liquify the <thing>
+    finish;
   }
 
 }

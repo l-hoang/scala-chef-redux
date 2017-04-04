@@ -72,7 +72,7 @@ class ChefText {
   /* Adds a Chef Line to the program text. */
   def addLine(newLine: ChefLine) = {
     lines(currentLine) = newLine 
-    println(newLine)
+    //println(newLine)
     currentLine += 1
   }
 
@@ -131,5 +131,11 @@ class ChefText {
    * functions have a start and an end) */
 
     // TODO
+  }
+
+  def printLines = {
+    for (i <- 1 to currentLine) {
+      println("Line " + i + " " + lines(i))
+    }
   }
 }

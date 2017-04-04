@@ -371,6 +371,7 @@ class ScalaChefRedux {
 
   implicit def int2IngredientGetter(i: Int) = new IngredientGetter(i)
 
+  def finish = programText.printLines
 
   ///////////////////////
   // Mode change lines //
