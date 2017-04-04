@@ -44,6 +44,12 @@ class ChefText {
     def setEndLine(e: Int) = {
       endLine = e
     }
+
+    /* Get the start line */
+    def getStartLine = startLine
+
+    /* Get the end line */
+    def getEndLine = endLine
   }
 
   // start at line 1
@@ -74,6 +80,9 @@ class ChefText {
     //println(newLine)
     currentLine += 1
   }
+
+  /* Get the requested line number */
+  def getLine(lineNumber: Int) = lines(lineNumber)
 
   /* Add a starting ingredient to the current function */
   def addIngredient(newIngredient: ChefIngredient) = {
@@ -120,6 +129,16 @@ class ChefText {
     functions(currentFunction) setEndLine currentLine
   }
 
+  /* Get the function start line for some function */
+  def getStartLine(functionName: String) = {
+    functions(functionName).getStartLine
+  }
+
+  /* Get the function end line for some function */
+  def getEndLine(functionName: String) = {
+    functions(functionName).getEndLine
+  }
+
   ///////////
   // Other //
   ///////////
@@ -128,6 +147,11 @@ class ChefText {
   /* Make sure all of the lines/info in the text are consistent (e.g. all 
    * functions have a start and an end) */
   def consistencyCheck = {
+    for (i <- functions.keys) {
+      if (functions(i).getStartLine == -1 || functions(i).getEndLine == -1) {
+        throw new RuntimeException("ERROR: recipe " + i + " inconsistent")
+      }
+    }
 
     // TODO
   }
