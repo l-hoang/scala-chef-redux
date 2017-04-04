@@ -22,9 +22,14 @@ class ChefRunner(state: ChefState, text: ChefText) {
       var nextLine = programText getLine currentLine
 
       nextLine match {
-        case Push(ingredient, bowlNumber) => 
+        case Push(ingredient, bowlNumber) => println("push " + ingredient);
           programState.pushToBowl(ingredient, bowlNumber)
-        case _ => throw new RuntimeException("Invalid line for ChefRunner")
+        case LiquefyContents(bowlNumber) => println("liquefy " + bowlNumber);
+          programState.liquefyBowl(bowlNumber)
+        case CopyStack(bowlNumber, dishNumber) => 
+          println("copy " + bowlNumber + dishNumber)
+          programState.bowlToDish(bowlNumber, dishNumber)
+        case x => throw new RuntimeException("Invalid line for ChefRunner " + x)
       }
 
       currentLine += 1
