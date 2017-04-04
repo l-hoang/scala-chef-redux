@@ -10,6 +10,7 @@ class LineBuilder {
   case object M_METHOD extends ParseMode
   case object M_LIMBO extends ParseMode
   case object M_END extends ParseMode
+  case object M_DONE extends ParseMode
 
 
   /////////////////////
@@ -84,6 +85,14 @@ class LineBuilder {
     }
   }
 
+  /* Make sure the mode isn't end mode */
+  def assertNotEnd = {
+    currentOp match {
+      case E_DONE => throw new RuntimeException("Assert not end failed")
+      case _ => 
+    }
+  }
+
   ////////////////////
   // State changers //
   ////////////////////
@@ -91,6 +100,7 @@ class LineBuilder {
 
   /* Switch to title mode */
   def modeTitle = {
+    assertNotEnd
     assertNoOp
     clearData
     mode = M_TITLE
@@ -98,6 +108,7 @@ class LineBuilder {
 
   /* Switch to ingredient mode */
   def modeIngredient = {
+    assertNotEnd
     assertLimbo
     assertNoOp
     clearData
@@ -106,6 +117,7 @@ class LineBuilder {
 
   /* Switch to method mode */
   def modeMethod = {
+    assertNotEnd
     assertNoOp
     clearData
     mode = M_METHOD
@@ -113,6 +125,7 @@ class LineBuilder {
 
   /* Switch to limbo mode (i.e. needs to switch modes) */
   def modeLimbo = {
+    assertNotEnd
     assertNoOp
     clearData
     mode = M_LIMBO
@@ -124,6 +137,13 @@ class LineBuilder {
     assertNoOp
     clearData
     mode = M_END
+  }
+
+  /* Set to this mode = can't do anything else */
+  def modeDone = {
+    assertNoOp
+    clearData
+    mode = M_DONE
   }
 
   /* Set the current recipe being parsed by the program */
