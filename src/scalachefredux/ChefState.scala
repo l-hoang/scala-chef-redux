@@ -66,7 +66,41 @@ class ChefState {
     currentIngredients = text getStartingIngredients mainRecipe
   }
 
+  /* Make sure a certain bowl exists; if not create it */
+  def assertBowlExistence(bowlNumber: Int) = {
+    if (!(currentBowls contains bowlNumber)) {
+      currentBowls(bowlNumber) = new ChefStack
+    }
+  }
+
+  /* Make sure a certain dish exists; if not create it */
+  def assertDishExistence(dishNumber: Int) = {
+    if (!(currentDishes contains dishNumber)) {
+      currentDishes(dishNumber) = new ChefStack
+    }
+  }
+
   /* Push a given ingredient into a certain bowl */
-  def pushToBowl(ingredient: String, bowlNumber: Int) =
+  def pushToBowl(ingredient: String, bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
     currentBowls(bowlNumber).push(currentIngredients(ingredient).deepCopy)
+  }
+
+  /* Convert interpretation of a bowl into liquid */
+  def liquefyBowl(bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber).liquefy
+  }
+
+  def bowlToDish(bowlNumber: Int, dishNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    assertDishExistence(dishNumber)
+
+    val bIterator = currentBowls(bowlNumber).descendingIterator
+
+    // copy over in reverse order
+    while (bIterator.hasNext) {
+      currentDishes(dishNumber) push bIterator.next.deepCopy
+    }
+  }
 }
