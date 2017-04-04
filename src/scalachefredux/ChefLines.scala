@@ -8,8 +8,8 @@ case class Read(ingredient: String) extends ChefLine // Take
 case class Push(ingredient: String, bowlNumber: Int) extends ChefLine // Put
 case class Pop(bowlNumber: Int, ingredient: String) extends ChefLine // Fold
 
-case class Liquify(ingredient: String) extends ChefLine // Liquify
-case class LiquifyBowl(bowlNumber: Int) extends ChefLine // Liquify
+case class Liquefy(ingredient: String) extends ChefLine // Liquefy
+case class LiquefyContents(bowlNumber: Int) extends ChefLine // Liquefy
 
 case class CopyStack(bowlNumber: Int, dishNumber: Int) extends ChefLine // Pour
 
