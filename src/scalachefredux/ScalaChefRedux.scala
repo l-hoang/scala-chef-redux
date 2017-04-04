@@ -409,14 +409,16 @@ class ScalaChefRedux {
    * program. */
   object Enjoy {
     def your(m: MealWord) = {
-      // must be in method mode
-      lineBuilder.assertMethod
+      // disable the line builder for good
+      lineBuilder.modeEnd
+
+      // finish the last function
+      programText.endFunction
 
       // TODO
       // pass the program text into the program state in order to begin running 
       // the program
     }
-
   }
 
   ///////////////////////
