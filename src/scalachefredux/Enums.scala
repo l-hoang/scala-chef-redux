@@ -12,7 +12,8 @@ case object E_REMOVE extends ChefOp
 case object E_COMBINE extends ChefOp
 case object E_DIVIDE extends ChefOp
 case object E_ADDDRY extends ChefOp
-case object E_LIQUIFY extends ChefOp
+case object E_LIQUEFY extends ChefOp
+case object E_LIQUEFY_CONTENTS extends ChefOp
 case object E_STIR extends ChefOp
 case object E_MIX extends ChefOp
 case object E_CLEAN extends ChefOp
@@ -43,3 +44,6 @@ object baking extends BakingWord
 
 abstract sealed class BowlWord
 object bowl extends BowlWord
+
+abstract sealed class ContentsWord
+object contents extends ContentsWord

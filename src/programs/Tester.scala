@@ -73,6 +73,10 @@ object Tester extends ScalaChefRedux {
     Put the "eggs" into the mixing bowl;
     Put the "haricot beans" into the mixing bowl;
 
+    Liquefy the contents of the mixing bowl;
+    Liquefy the contents of mixing bowl 1;
+
+
     //take the "thing" from the refridge
     //take "thing" from fridge
     //fold the <thing> into bowl <num>

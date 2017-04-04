@@ -53,6 +53,30 @@ class ScalaChefRedux {
     }
   }
 
+  /* Parses "mixing bowl" */
+  object MixingGetter {
+    /* mixing bowl by itself = default stack 1 */
+    def mixing(b: BowlWord) = {
+      lineBuilder setStackNumber1 1
+      programText addLine lineBuilder.finishLine
+    }
+  }
+
+  /* Parses "bowl <number>" */
+  object BowlGetter {
+    /* bowl with number = into some particular stack */
+    def bowl(bowlNumber: Int) = {
+      lineBuilder setStackNumber1 bowlNumber
+      programText addLine lineBuilder.finishLine
+    }
+
+    /* bowl with no number = by default stack 1 */
+    def bowl = {
+      lineBuilder setStackNumber1 1
+      programText addLine lineBuilder.finishLine
+    }
+  }
+
   object Take {
     // a, an, the, some follow take
     def a(ingredient: String) = {
@@ -85,26 +109,6 @@ class ScalaChefRedux {
       def into(t: TheWord) = MixingGetter
     }
 
-    object MixingGetter {
-      def mixing(b: BowlWord) = {
-        lineBuilder setStackNumber1 1
-        programText addLine lineBuilder.finishLine
-      }
-    }
-
-    object BowlGetter {
-      /* bowl with number = into some particular stack */
-      def bowl(bowlNumber: Int) = {
-        lineBuilder setStackNumber1 bowlNumber
-        programText addLine lineBuilder.finishLine
-      }
-
-      /* bowl with no number = by default stack 1 */
-      def bowl = {
-        lineBuilder setStackNumber1 1
-        programText addLine lineBuilder.finishLine
-      }
-    }
   }
 
   object Fold {
@@ -127,8 +131,28 @@ class ScalaChefRedux {
 
   }
 
-  object Liquify {
+  /* (Liquefy the contents) (of the) (mixing bowl)
+   * (Liquefy the contents) (of mixing) (bowl <number>) */
+  object Liquefy {
+    def the(ingredient: String) = {
+      lineBuilder.assertMethod
+      lineBuilder setOp E_LIQUEFY
+      lineBuilder setString ingredient
 
+      programText addLine lineBuilder.finishLine
+    }
+
+    def the(c: ContentsWord) = {
+      lineBuilder.assertMethod
+      lineBuilder setOp E_LIQUEFY_CONTENTS
+    
+      OfGetter
+    }
+
+    object OfGetter {
+      def of(t: TheWord) = MixingGetter
+      def of(m: MixingWord) = BowlGetter
+    }
   }
 
   object Stir {
@@ -146,7 +170,6 @@ class ScalaChefRedux {
   object Pour {
 
   }
-
 
   // TODO verbs: implicits most likely
 
