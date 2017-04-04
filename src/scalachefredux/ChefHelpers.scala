@@ -28,8 +28,10 @@ SOFTWARE.
 package scalachefredux
 
 import scala.collection.mutable
+import java.util.ArrayDeque
 
-class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1) {
+class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1, 
+                     copy: Boolean = false, cInitialized: Boolean = false) {
 /* Class that represents a Chef ingredient. Has the ingredient quantity as well
  * as its interpretation. */
 
@@ -42,6 +44,19 @@ class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1) 
   if (initValue != -1) {
     initialized = true
     quantity = initValue
+  }
+
+  /* if this ingredient was made from a copy, then take its passed in 
+   * values */
+  if (copy) {
+    quantity = initValue
+    initialized = cInitialized
+  }
+
+  /* Return a new copy of the ingredient */
+  def deepCopy = {
+    new ChefIngredient(ingredientName, currentInterpretation, quantity, true,
+                       initialized)
   }
 
   /////////////
@@ -85,6 +100,58 @@ class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1) 
       throw new RuntimeException("ERROR: ingredient not initialized")
     }
   }
+}
+
+/* A wrapper class for a Java deque that is used to represent a Chef stack 
+ * (dish or bowl) */
+class ChefStack {
+  val javaDeque = new ArrayDeque[ChefIngredient]
+
+  /* put at front of deque */
+  def push(i: ChefIngredient) = javaDeque push i
+  /* pop from the front of the deque */
+  def pop = javaDeque.pop
+
+  /* Change the interpretation of all ingredients in this stack to liquid */
+  def liquefy = {
+    val thisIterator = javaDeque.iterator
+
+    while (thisIterator.hasNext) {
+      (thisIterator.next) setInterpretation I_LIQUID
+    }
+  }
+
+  /* Move an ingredient stirNum places down the stack */
+  def stir(stirNum: Int) = {
+    // TODO
+  }
+
+  /* Randomize the order of the stack */
+  def mix = {
+    // TODO
+  }
+
+  /* Empty the stack */
+  def clean = {
+    javaDeque.clear
+  }
+
+  def deepCopy(otherStack: ChefStack) = {
+    if(!javaDeque.isEmpty) {
+      throw new RuntimeException("ERROR: can only copy into this stack if empty")
+    }
+
+    val otherIterator = otherStack.iterator
+
+    while (otherIterator.hasNext) {
+      javaDeque add (otherIterator.next.deepCopy)
+    }
+  }
+
+  /* Return an iterator to the Java deque (order is same as popping it */
+  def iterator = javaDeque.iterator
+
+
 }
 
 /* Contains helper functions that are used throughout Scala-Chef redux */
