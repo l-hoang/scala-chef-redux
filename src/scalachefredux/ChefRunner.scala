@@ -14,6 +14,9 @@ class ChefRunner(state: ChefState, text: ChefText) {
     // get the last line of the main function
     val mainLastLine = programText getEndLine programState.getMainRecipe
 
+    // initialize the starting ingredients
+    programState initializeIngredients programText
+
     // TODO change this while true to something better?
     while (currentLine != mainLastLine || inFunction) {
       var nextLine = programText getLine currentLine
