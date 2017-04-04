@@ -51,3 +51,5 @@ object contents extends ContentsWord
 abstract sealed class DishWord
 object dish extends DishWord
 
+abstract sealed class MealWord
+object meal extends MealWord
