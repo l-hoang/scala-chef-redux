@@ -26,6 +26,21 @@ package scalachefredux
 
 import scala.collection.mutable
 
-class ChefState {
 /* Holds current program state */
+class ChefState {
+  
+  // track if a main recipe has been set + main recipe name
+  var recipeSet = false
+  var mainRecipe = ""
+
+  /* Set the main recipe from which to start execution when you begin running
+   * the program */
+  def setMainRecipe(recipe: String) = {
+    if (!recipeSet) { 
+      mainRecipe = recipe
+      recipeSet = true
+    } else {
+      throw new RuntimeException("ERROR: trying to set a new main recipe")
+    }
+  }
 }

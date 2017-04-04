@@ -32,6 +32,9 @@ class ScalaChefRedux {
 
   val lineBuilder = new LineBuilder
   val programText = new ChefText
+  val programState = new ChefState
+
+  var firstRecipeFound = false
 
   ///////////
   // TITLE //
@@ -47,9 +50,12 @@ class ScalaChefRedux {
       // Tell program text to save the current line as the start of a new
       // function
       programText functionStart recipeTitle
-
       // go into limbo mode (next thing should be Ingredients declaration)
       lineBuilder.modeLimbo
+
+      if (!firstRecipeFound) {
+        programState setMainRecipe recipeTitle
+      }
     }
   }
 
@@ -373,6 +379,20 @@ class ScalaChefRedux {
 
   /* Debug function that will print the lines of the program text */
   def printLines = programText.printLines
+
+  /* "Enjoy your meal;" is the line that tells you to begin running the 
+   * program. */
+  object Enjoy {
+    def your(m: MealWord) = {
+      // must be in method mode
+      lineBuilder.assertMethod
+
+      // TODO
+      // pass the program text into the program state in order to begin running 
+      // the program
+    }
+
+  }
 
   ///////////////////////
   // Mode change lines //
