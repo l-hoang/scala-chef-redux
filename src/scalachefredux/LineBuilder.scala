@@ -167,6 +167,7 @@ class LineBuilder {
       case E_PUT => Push(heldString, stackNumber1)
       case E_LIQUEFY => Liquefy(heldString)
       case E_LIQUEFY_CONTENTS => LiquefyContents(stackNumber1)
+      case E_POUR => CopyStack(stackNumber1, stackNumber2)
       case _ => throw new RuntimeException("Valid op not set for finish line")
     }
     // clear the data in preparation for the next line
