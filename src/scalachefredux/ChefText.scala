@@ -69,8 +69,6 @@ class ChefText {
   ///////////
   /* Functions to deal with saving Chef Lines and such */
 
-
-
   /* Adds a Chef Line to the program text. */
   def addLine(newLine: ChefLine) = {
     lines(currentLine) = newLine 
