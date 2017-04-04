@@ -28,10 +28,15 @@ import scala.collection.mutable
 
 /* Holds current program state */
 class ChefState {
-  
   // track if a main recipe has been set + main recipe name
   var recipeSet = false
   var mainRecipe = ""
+
+  // mixing bowls and baking dishes
+  var currentBowls = new mutable.HashMap[Int, ChefStack]
+  var currentDishes = new mutable.HashMap[Int, ChefStack]
+  currentBowls(1) = new ChefStack
+  currentDishes(1) = new ChefStack
 
   /* Set the main recipe from which to start execution when you begin running
    * the program */
@@ -43,4 +48,8 @@ class ChefState {
       throw new RuntimeException("ERROR: trying to set a new main recipe")
     }
   }
+
+  /* Get the main recipe */
+  def getMainRecipe = if (recipeSet) mainRecipe else 
+    throw new RuntimeException("ERROR: trying to get unset main recipe")
 }
