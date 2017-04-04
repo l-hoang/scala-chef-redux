@@ -20,6 +20,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
       nextLine match {
         case Push(ingredient, bowlNumber) => 
+          programState.pushToBowl(ingredient, bowlNumber)
         case _ => throw new RuntimeException("Invalid line for ChefRunner")
       }
 

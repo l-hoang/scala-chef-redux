@@ -38,6 +38,8 @@ class ChefState {
   currentBowls(1) = new ChefStack
   currentDishes(1) = new ChefStack
 
+  var currentIngredients = new mutable.HashMap[String, ChefIngredient]
+
   /* Set the main recipe from which to start execution when you begin running
    * the program */
   def setMainRecipe(recipe: String) = {
@@ -52,4 +54,8 @@ class ChefState {
   /* Get the main recipe */
   def getMainRecipe = if (recipeSet) mainRecipe else 
     throw new RuntimeException("ERROR: trying to get unset main recipe")
+
+  /* Push a given ingredient into a certain bowl */
+  def pushToBowl(ingredient: String, bowlNumber: Int) =
+    currentBowls(bowlNumber).push(currentIngredients(ingredient).deepCopy)
 }
