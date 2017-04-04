@@ -161,17 +161,36 @@ class ScalaChefRedux {
     }
   }
 
+  // Stir for <number> minutes
+  // Stir mixing bowl <number> for <number> minutes
+  // stir <word> ingredient into mixing bowl 1
+  // stir <word> ingredient into the mixing bowl
   object Stir {
 
   }
 
+
+  /* mix mixing bowl <number> well (return a dynamic class to grab number) 
+   * mix well (mix first bowl) */
   object Mix {
+    
 
   }
 
-  object Clean {
+  /* Clean the mixing bowl
+   * Clean mixing bowl <number> */
+  def Clean(m: MixingWord) = {
+    // bowl something
+    // TODO
 
   }
+
+  def Clean(t: TheWord) = {
+    // mixing bowl grabber
+
+    // TODO
+  }
+
 
   /* Pour the contents (of mixing) (bowl <number>) (into the) (baking dish)
    * Pour the contents (of mixing) (bowl <number>) (into baking) (dish <number>)
@@ -239,8 +258,14 @@ class ScalaChefRedux {
 
   }
 
-  object Serves {
+  /* Serves <number> */
+  def Serves(numberOfDishes: Int) {
+    lineBuilder.assertMethod
+    lineBuilder setOp E_SERVES
+    lineBuilder setNumber numberOfDishes
+    programText addLine lineBuilder.finishLine
 
+    lineBuilder.modeEnd
   }
 
   /* Integers will be converted into this class, and the class will then
