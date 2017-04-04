@@ -87,8 +87,8 @@ class LineBuilder {
 
   /* Make sure the mode isn't end mode */
   def assertNotDone = {
-    currentOp match {
-      case E_DONE => throw new RuntimeException("Assert not done failed")
+    mode match {
+      case M_DONE => throw new RuntimeException("Assert not done failed")
       case _ => 
     }
   }
