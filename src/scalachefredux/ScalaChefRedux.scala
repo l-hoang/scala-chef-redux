@@ -167,8 +167,56 @@ class ScalaChefRedux {
 
   }
 
+  /* Pour the contents (of mixing) (bowl <number>) (into the) (baking dish)
+   * Pour the contents (of mixing) (bowl <number>) (into baking) (dish <number>)
+   * Pour the contents (of the) (mixing bowl) (into baking) (dish <number>) 
+   * Pour the contents (of the) (mixing bowl) (into the) (baking dish) */
   object Pour {
+    def the(c: ContentsWord) = {
+      lineBuilder.assertMethod
+      lineBuilder setOp E_POUR
 
+      PourOfGetter
+    }
+
+    object PourOfGetter {
+      def of(t: TheWord) = PourMixingGetter
+      def of(m: MixingWord) = PourBowlGetter
+    }
+
+    object PourMixingGetter {
+      def mixing(b: BowlWord) = {
+        lineBuilder setStackNumber1 1
+        PourIntoGetter
+
+      }
+    }
+
+    object PourBowlGetter {
+      def bowl(bowlNumber: Int) = {
+        lineBuilder setStackNumber1 bowlNumber
+        PourIntoGetter
+      }
+    }
+
+    object PourIntoGetter {
+      def into(b: BakingWord) = PourDishGetter
+      def into(t: TheWord) = PourBakingGetter
+    }
+
+    object PourDishGetter {
+      def dish(dishNumber: Int) = {
+        lineBuilder setStackNumber2 dishNumber
+        programText addLine lineBuilder.finishLine
+      }
+    }
+
+    object PourBakingGetter {
+      def baking(d: DishWord) = {
+        lineBuilder setStackNumber2 1
+        programText addLine lineBuilder.finishLine
+      }
+    }
   }
 
   // TODO verbs: implicits most likely

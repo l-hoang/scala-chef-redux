@@ -47,3 +47,7 @@ object bowl extends BowlWord
 
 abstract sealed class ContentsWord
 object contents extends ContentsWord
+
+abstract sealed class DishWord
+object dish extends DishWord
+
