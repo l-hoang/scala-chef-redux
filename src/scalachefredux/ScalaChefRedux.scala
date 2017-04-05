@@ -188,6 +188,11 @@ class ScalaChefRedux {
       // Optional part can be parsed
       ToGetter
     }
+    // aliases for "the"
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
+
   }
 
   // Remove the <ingredient>
@@ -208,6 +213,11 @@ class ScalaChefRedux {
       // Optional part can be parsed
       FromGetter
     }
+
+    // aliases for "the"
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
 
     object FromGetter {
       /* "from mixing" leads into "bowl <number>" */
@@ -234,10 +244,35 @@ class ScalaChefRedux {
       // Optional part can be parsed
       IntoGetter
     }
+
+    // aliases for "the"
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
   }
 
+  /* Divide the <ing> into the mixing bowl
+   * Divide the <ing> into mixing bowl <number> */
   object Divide {
+    def the(ingredient: String) = {
+      finishLine
 
+      lineBuilder.assertMethod
+      // set ingredient + op
+      lineBuilder setString ingredient
+      lineBuilder setOp E_DIVIDE
+      lineBuilder setStackNumber1 1
+      // can end here, so mark finished; there is optional part after it
+      lineBuilder.setFinished
+
+      // Optional part can be parsed
+      IntoGetter
+    }
+
+    // aliases for "the"
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
   }
 
 

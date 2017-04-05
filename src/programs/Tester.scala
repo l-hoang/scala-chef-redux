@@ -70,7 +70,8 @@ object Tester extends ScalaChefRedux {
     Add the "zucchinis" to mixing bowl 1;
     //Remove the "zucchinis" from the mixing bowl;
     Remove the "zucchinis" from mixing bowl 1;
-    Combine the "tofu" into the mixing bowl;
+    //Combine the "tofu" into the mixing bowl;
+    Divide some "tofu" into the mixing bowl;
     Pour the contents of the mixing bowl into baking dish 2; 
 
     //take the "thing" from the refridge
