@@ -116,9 +116,42 @@ class ChefState {
   }
 
   /* Do in place addition of an ingredient and the item at the top of a bowl */
-  def addOp(ingredient: String, bowlNumber: Int) {
+  def addOp(ingredient: String, bowlNumber: Int) = {
     assertBowlExistence(bowlNumber)
     currentBowls(bowlNumber) add currentIngredients(ingredient).asNumber
+  }
+
+  /* Do in place subtraction of an ingredient and the item at the top of a bowl */
+  def subOp(ingredient: String, bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber) subtract currentIngredients(ingredient).asNumber
+  }
+
+  /* Do in place multiplication of an ingredient and the item at the top of a bowl */
+  def mulOp(ingredient: String, bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber) multiply currentIngredients(ingredient).asNumber
+  }
+
+  /* Do in place division of an ingredient and the item at the top of a bowl */
+  def divOp(ingredient: String, bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber) divide currentIngredients(ingredient).asNumber
+  }
+
+  /* Add all dry ingredients together */
+  def addDry(bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    val iIter = currentIngredients.valuesIterator
+    var total = 0
+
+    while (iIter.hasNext) {
+      val i = iIter.next
+      
+      total += (if (i.getInterpretation == I_DRY) i.asNumber else 0)
+    }
+
+    currentBowls(bowlNumber) push (new ChefIngredient("dry", I_DRY, total))
   }
 
   /* Liquefy an ingredient we have */

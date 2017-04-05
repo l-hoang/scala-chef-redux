@@ -127,12 +127,58 @@ class ChefStack {
   /* Add to top element of this stack */
   def add(toAdd: Int) = {
     if (javaDeque.isEmpty) {
-      throw new RuntimeException("ERROR: can't add op with an empty bowl")
+      throw new RuntimeException("ERROR: can't add with an empty bowl")
     }
 
     val ingredient = javaDeque.peek
     ingredient setValue (ingredient.asNumber + toAdd)
   }
+
+  /* Subtract from top element of this stack */
+  def subtract(toSubtract: Int) = {
+    if (javaDeque.isEmpty) {
+      throw new RuntimeException("ERROR: can't subtract with an empty bowl")
+    }
+
+    val ingredient = javaDeque.peek
+    ingredient setValue (ingredient.asNumber - toSubtract)
+  }
+
+  /* Multiply with top element of this stack */
+  def multiply(toMultiply: Int) = {
+    if (javaDeque.isEmpty) {
+      throw new RuntimeException("ERROR: can't multiply with an empty bowl")
+    }
+
+    val ingredient = javaDeque.peek
+    ingredient setValue (ingredient.asNumber * toMultiply)
+  }
+
+  /* Divide into top element of this stack */
+  def divide(toDivide: Int) = {
+    if (javaDeque.isEmpty) {
+      throw new RuntimeException("ERROR: can't divide with an empty bowl")
+    }
+
+    val ingredient = javaDeque.peek
+    // TODO make it the other way around?
+    ingredient setValue (toDivide / ingredient.asNumber)
+  }
+
+  /* Add all dry ingredients in this stack and push as a new ingredient */
+  //def addDry = {
+  //  var total = 0
+
+  //  val dequeIter = javaDeque.iterator
+
+  //  while (dequeIter.hasNext) {
+  //    val i = dequeIter.next
+  //    
+  //    total += (if (i.getInterpretation == I_DRY) i.asNumber else 0)
+  //  }
+
+  //  javaDeque push (new ChefIngredient("dry", I_DRY, total))
+  //}
 
   /* Move an ingredient stirNum places down the stack */
   def stir(stirNum: Int) = {
