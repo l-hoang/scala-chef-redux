@@ -86,6 +86,11 @@ class ChefState {
     currentBowls(bowlNumber).push(currentIngredients(ingredient).deepCopy)
   }
 
+  /* Liquefy an ingredient we have */
+  def liquefyIngredient(ingredient: String) = {
+    currentIngredients(ingredient).setInterpretation(I_LIQUID)
+  }
+
   /* Convert interpretation of a bowl into liquid */
   def liquefyBowl(bowlNumber: Int) = {
     assertBowlExistence(bowlNumber)
