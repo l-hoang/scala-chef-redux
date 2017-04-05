@@ -86,6 +86,17 @@ class ChefState {
     currentBowls(bowlNumber).push(currentIngredients(ingredient).deepCopy)
   }
 
+  def popToIngredient(bowlNumber: Int, ingredient: String) = {
+    assertBowlExistence(bowlNumber)
+
+    if (currentBowls(bowlNumber).empty) {
+      throw new RuntimeException("ERROR: can't fold an empty bowl")
+    }
+
+    // pop, then save value to ingredient
+    currentIngredients(ingredient) setValue (currentBowls(bowlNumber).pop.asNumber)
+  }
+
   /* Liquefy an ingredient we have */
   def liquefyIngredient(ingredient: String) = {
     currentIngredients(ingredient).setInterpretation(I_LIQUID)
@@ -100,7 +111,7 @@ class ChefState {
   /* Clear a bowl */
   def clearBowl(bowlNumber: Int) = {
     assertBowlExistence(bowlNumber)
-    currentBowls(bowlNumber).empty
+    currentBowls(bowlNumber).clean
   }
 
   /* Copy a bowl to a dish (stack to stack) */

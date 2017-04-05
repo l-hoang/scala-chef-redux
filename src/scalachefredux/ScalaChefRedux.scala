@@ -85,6 +85,14 @@ class ScalaChefRedux {
     }
   }
 
+  object IntoGetter {
+    /* "into mixing" leads into "bowl <number>" */
+    def into(m: MixingWord) = BowlGetter
+    /* "into the" leads into "mixing bowl" */
+    def into(t: TheWord) = MixingGetter
+  }
+
+
   object Take {
     // a, an, the, some follow take
     def a(ingredient: String) = {
@@ -112,17 +120,26 @@ class ScalaChefRedux {
     def an(ingredient: String) = the(ingredient)
     def some(ingredient: String) = the(ingredient)
 
-    object IntoGetter {
-      /* "into mixing" leads into "bowl <number>" */
-      def into(m: MixingWord) = BowlGetter
-      /* "into the" leads into "mixing bowl" */
-      def into(t: TheWord) = MixingGetter
-    }
 
   }
 
   object Fold {
+    def the(ingredient: String) = {
+      finishLine
 
+      lineBuilder.assertMethod
+      // set ingredient + op
+      lineBuilder setString ingredient
+      lineBuilder setOp E_FOLD
+
+      // return the into object
+      IntoGetter
+    }
+
+    // aliases for "the"
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
   }
 
   // Add dry ingredients

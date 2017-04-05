@@ -212,6 +212,7 @@ class LineBuilder {
     assertLineFinished
     var toReturn: ChefLine = currentOp match {
       case E_PUT => Push(heldString, stackNumber1)
+      case E_FOLD => Pop(stackNumber1, heldString)
       case E_LIQUEFY => Liquefy(heldString)
       case E_LIQUEFY_CONTENTS => LiquefyContents(stackNumber1)
       case E_POUR => CopyStack(stackNumber1, stackNumber2)
@@ -221,10 +222,12 @@ class LineBuilder {
     }
 
     if (currentOp == E_SERVES) {
+      clearData
       modeEnd
+    } else {
+      clearData
     }
-    // clear the data in preparation for the next line
-    clearData
+
     toReturn
   }
 }

@@ -24,17 +24,26 @@ class ChefRunner(state: ChefState, text: ChefText) {
       nextLine match {
         case Push(ingredient, bowlNumber) => println("push " + ingredient);
           programState.pushToBowl(ingredient, bowlNumber)
+
+        case Pop(bowlNumber, ingredient) => println("pop " + bowlNumber);
+          programState.popToIngredient(bowlNumber, ingredient)
+
         case Liquefy(ingredient) => println("liquefy " + ingredient);
           programState.liquefyIngredient(ingredient)
+
         case LiquefyContents(bowlNumber) => println("liquefy " + bowlNumber);
           programState.liquefyBowl(bowlNumber)
+
         case ClearStack(bowlNumber) => println("clear " + bowlNumber);
           programState.clearBowl(bowlNumber)
+
         case CopyStack(bowlNumber, dishNumber) => 
           println("copy " + bowlNumber + dishNumber)
           programState.bowlToDish(bowlNumber, dishNumber)
+
         case PrintStacks(numToPrint) => println("print stacks " + numToPrint);
           programState.printDishes(numToPrint)
+
         case x => throw new RuntimeException("Invalid line for ChefRunner " + x)
       }
 
