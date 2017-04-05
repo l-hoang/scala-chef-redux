@@ -39,6 +39,9 @@ class LineBuilder {
   // TODO kill if not needed
   var heldIngredient: ChefIngredient = NULLINGREDIENT
 
+  // mark if a line is ready to be returned
+  var lineFinished = false
+
 
   ////////////////
   // Assertions //
@@ -90,6 +93,13 @@ class LineBuilder {
     mode match {
       case M_DONE => throw new RuntimeException("Assert not done failed")
       case _ => 
+    }
+  }
+
+  /* Line finished assertion */
+  def assertLineFinished = {
+    if (!lineFinished) {
+      throw new RuntimeException("ERROR: line not marked finished")
     }
   }
 
@@ -172,6 +182,9 @@ class LineBuilder {
     heldIngredient = newIngredient
   }
 
+  /* Set lineFinished to true */
+  def setFinished = lineFinished = true
+
   /* Clear all currently held line state (except the title) by resetting it 
    * to some default value. */
   def clearData = {
@@ -181,17 +194,20 @@ class LineBuilder {
     heldNumber = -1
     stackNumber1 = -1
     stackNumber2 = -1
+    lineFinished = false
   }
 
   //////////////////////
   // Access Interface //
   //////////////////////
-  /* Methods used to get things from the line builder */
+  /* Methods used to access the line builder */
+
+
 
   /* Return a line with the appropriate information filled in. */
   def finishLine = {
     // TODO
-
+    assertLineFinished
     var toReturn: ChefLine = currentOp match {
       case E_PUT => Push(heldString, stackNumber1)
       case E_LIQUEFY => Liquefy(heldString)
