@@ -11,10 +11,12 @@ case class Pop(bowlNumber: Int, ingredient: String) extends ChefLine // Fold
 case class Liquefy(ingredient: String) extends ChefLine // Liquefy
 case class LiquefyContents(bowlNumber: Int) extends ChefLine // Liquefy
 
+case class ClearStack(bowlNumber: Int) extends ChefLine // Clean
+
 case class CopyStack(bowlNumber: Int, dishNumber: Int) extends ChefLine // Pour
 
-case object Break extends ChefLine // Set
 
+case object Break extends ChefLine // Set
 case class PrintStacks(num: Int) extends ChefLine // Serves
 
 case object Useless extends ChefLine // To appease type checker

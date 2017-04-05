@@ -156,7 +156,6 @@ class ChefText {
         throw new RuntimeException("ERROR: recipe " + i + " inconsistent")
       }
     }
-
     // TODO
   }
 

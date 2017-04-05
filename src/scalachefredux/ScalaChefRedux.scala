@@ -35,6 +35,7 @@ class ScalaChefRedux {
   val programState = new ChefState
 
   var firstRecipeFound = false
+  var firstOp = false
 
   ///////////
   // TITLE //
@@ -65,7 +66,7 @@ class ScalaChefRedux {
     /* mixing bowl by itself = default stack 1 */
     def mixing(b: BowlWord) = {
       lineBuilder setStackNumber1 1
-      programText addLine lineBuilder.finishLine
+      lineBuilder.setFinished
     }
   }
 
@@ -74,13 +75,13 @@ class ScalaChefRedux {
     /* bowl with number = into some particular stack */
     def bowl(bowlNumber: Int) = {
       lineBuilder setStackNumber1 bowlNumber
-      programText addLine lineBuilder.finishLine
+      lineBuilder.setFinished
     }
 
     /* bowl with no number = by default stack 1 */
     def bowl = {
       lineBuilder setStackNumber1 1
-      programText addLine lineBuilder.finishLine
+      lineBuilder.setFinished
     }
   }
 
@@ -95,6 +96,8 @@ class ScalaChefRedux {
    * Put the <ingredient> into mixing bowl <number>; */
   object Put {
     def the(ingredient: String) = {
+      finishLine
+
       lineBuilder.assertMethod
       // set ingredient + op
       lineBuilder setString ingredient
@@ -149,14 +152,18 @@ class ScalaChefRedux {
    * (Liquefy the contents) (of mixing) (bowl <number>) */
   object Liquefy {
     def the(ingredient: String) = {
+      finishLine
+
       lineBuilder.assertMethod
       lineBuilder setOp E_LIQUEFY
       lineBuilder setString ingredient
 
-      programText addLine lineBuilder.finishLine
+      lineBuilder.setFinished
     }
 
     def the(c: ContentsWord) = {
+      finishLine
+
       lineBuilder.assertMethod
       lineBuilder setOp E_LIQUEFY_CONTENTS
     
@@ -188,15 +195,19 @@ class ScalaChefRedux {
 
   /* Clean up the mixing bowl
    * Clean up mixing bowl <number> */
-  object Clean = {
-    def up(t: TheWord) {
+  object Clean {
+    def up(t: TheWord) = {
+      finishLine
+
       lineBuilder.assertMethod
-      lineBuilder setOp E_CLEAN
+      lineBuilder setOp E_CLEAN;
 
       MixingGetter
     }
 
-    def up(m: MixingWord) {
+    def up(m: MixingWord) = {
+      finishLine
+
       lineBuilder.assertMethod
       lineBuilder setOp E_CLEAN
 
@@ -211,6 +222,8 @@ class ScalaChefRedux {
    * Pour the contents (of the) (mixing bowl) (into the) (baking dish) */
   object Pour {
     def the(c: ContentsWord) = {
+      finishLine
+
       lineBuilder.assertMethod
       lineBuilder setOp E_POUR
 
@@ -245,14 +258,14 @@ class ScalaChefRedux {
     object PourDishGetter {
       def dish(dishNumber: Int) = {
         lineBuilder setStackNumber2 dishNumber
-        programText addLine lineBuilder.finishLine
+        lineBuilder.setFinished
       }
     }
 
     object PourBakingGetter {
       def baking(d: DishWord) = {
         lineBuilder setStackNumber2 1
-        programText addLine lineBuilder.finishLine
+        lineBuilder.setFinished
       }
     }
   }
@@ -273,13 +286,12 @@ class ScalaChefRedux {
 
   object Recipe {
     def serves(numberOfDishes: Int) {
+      finishLine
+
       lineBuilder.assertMethod
       lineBuilder setOp E_SERVES
       lineBuilder setNumber numberOfDishes
-      programText addLine lineBuilder.finishLine
-  
-      // do not allow anything else to come after this except another recipe
-      lineBuilder.modeEnd
+      lineBuilder.setFinished
     }
   }
 
@@ -424,6 +436,9 @@ class ScalaChefRedux {
    * program. */
   object Enjoy {
     def your(m: MealWord) = {
+      // finish the last line
+      finishLine
+
       // disable the line builder for good
       lineBuilder.modeDone
 
@@ -435,6 +450,16 @@ class ScalaChefRedux {
       // run the program
       val runner = new ChefRunner(programState, programText)
       runner.run
+    }
+  }
+
+
+  /* Called to finish a line */
+  def finishLine = {
+    if (!firstOp) {
+      programText addLine lineBuilder.finishLine
+    } else {
+      firstOp = false
     }
   }
 
@@ -451,5 +476,6 @@ class ScalaChefRedux {
   /* Mode change to method */
   def Method {
     lineBuilder.modeMethod
+    firstOp = true
   }
 }

@@ -42,6 +42,7 @@ class LineBuilder {
   // mark if a line is ready to be returned
   var lineFinished = false
 
+  var first_marker = false
 
   ////////////////
   // Assertions //
@@ -129,6 +130,7 @@ class LineBuilder {
   def modeMethod = {
     assertNotDone
     assertNoOp
+    assertIngredient
     clearData
     mode = M_METHOD
   }
@@ -213,8 +215,13 @@ class LineBuilder {
       case E_LIQUEFY => Liquefy(heldString)
       case E_LIQUEFY_CONTENTS => LiquefyContents(stackNumber1)
       case E_POUR => CopyStack(stackNumber1, stackNumber2)
+      case E_CLEAN => ClearStack(stackNumber1)
       case E_SERVES => PrintStacks(heldNumber)
       case _ => throw new RuntimeException("Valid op not set for finish line")
+    }
+
+    if (currentOp == E_SERVES) {
+      modeEnd
     }
     // clear the data in preparation for the next line
     clearData

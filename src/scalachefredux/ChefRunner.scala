@@ -26,6 +26,8 @@ class ChefRunner(state: ChefState, text: ChefText) {
           programState.pushToBowl(ingredient, bowlNumber)
         case LiquefyContents(bowlNumber) => println("liquefy " + bowlNumber);
           programState.liquefyBowl(bowlNumber)
+        case ClearStack(bowlNumber) => println("clear " + bowlNumber);
+          programState.clearBowl(bowlNumber)
         case CopyStack(bowlNumber, dishNumber) => 
           println("copy " + bowlNumber + dishNumber)
           programState.bowlToDish(bowlNumber, dishNumber)

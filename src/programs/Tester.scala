@@ -34,8 +34,8 @@ object Tester extends ScalaChefRedux {
     Put some "lard" into mixing bowl 1;
     Put some "lard" into mixing bowl 1;
     Put the "eggs" into mixing bowl 1;
-
     Put the "haricot beans" into mixing bowl;
+
     Put the "potatoes" into the mixing bowl;
     Put the "dijon mustard" into the mixing bowl;
     Put some "lard" into the mixing bowl;
@@ -56,6 +56,11 @@ object Tester extends ScalaChefRedux {
     Pour the contents of mixing bowl 1 into the baking dish; 
     Pour the contents of the mixing bowl into the baking dish; 
     Pour the contents of the mixing bowl into baking dish 2; 
+
+    Clean up the mixing bowl;
+    Liquefy the "eggs";
+    Put the "eggs" into the mixing bowl;
+    Pour the contents of the mixing bowl into the baking dish; 
 
     //take the "thing" from the refridge
     //take "thing" from fridge

@@ -92,6 +92,13 @@ class ChefState {
     currentBowls(bowlNumber).liquefy
   }
 
+  /* Clear a bowl */
+  def clearBowl(bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber).empty
+  }
+
+  /* Copy a bowl to a dish (stack to stack) */
   def bowlToDish(bowlNumber: Int, dishNumber: Int) = {
     assertBowlExistence(bowlNumber)
     assertDishExistence(dishNumber)
