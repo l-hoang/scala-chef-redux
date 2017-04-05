@@ -103,4 +103,24 @@ class ChefState {
       currentDishes(dishNumber) push bIterator.next.deepCopy
     }
   }
+
+  /* Prints the contents of the baking dishes: note it destroys the baking
+   * dishes in question as it alters them */
+  def printDishes(numToPrint: Int) = {
+    for (i <- 1 to numToPrint) {
+      assertDishExistence(i)
+
+      val currentDish = currentDishes(i)
+
+      while (!currentDish.empty) {
+        val ingredient = currentDish.pop
+        ingredient.getInterpretation match {
+          case I_LIQUID => printf("%c", ingredient.asChar)
+          case I_DRY | I_EITHER => printf("%d", ingredient.asNumber)
+          case I_NULL => 
+            throw new RuntimeException("ERROR: ingredient in dish is null")
+        }
+      }
+    }
+  }
 }

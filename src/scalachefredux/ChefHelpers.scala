@@ -78,6 +78,9 @@ class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1,
   // Getters //
   /////////////
 
+  /* Return the current interpretation of this ingredient */
+  def getInterpretation = currentInterpretation
+
   def asNumber = {
   /* Return the value of this ingredient as a number */
     assertInitialized
@@ -152,6 +155,8 @@ class ChefStack {
   def iterator = javaDeque.iterator
   /* Return an backward iterator to the Java deque (pop from bottom) */
   def descendingIterator = javaDeque.descendingIterator
+  /* Tell whether or not this stack is empty */
+  def empty = javaDeque.isEmpty
 }
 
 /* Contains helper functions that are used throughout Scala-Chef redux */

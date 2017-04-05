@@ -29,6 +29,8 @@ class ChefRunner(state: ChefState, text: ChefText) {
         case CopyStack(bowlNumber, dishNumber) => 
           println("copy " + bowlNumber + dishNumber)
           programState.bowlToDish(bowlNumber, dishNumber)
+        case PrintStacks(numToPrint) => println("print stacks " + numToPrint);
+          programState.printDishes(numToPrint)
         case x => throw new RuntimeException("Invalid line for ChefRunner " + x)
       }
 

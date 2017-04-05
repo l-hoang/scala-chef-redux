@@ -258,6 +258,18 @@ class ScalaChefRedux {
 
   }
 
+  object Recipe {
+    def serves(numberOfDishes: Int) {
+      lineBuilder.assertMethod
+      lineBuilder setOp E_SERVES
+      lineBuilder setNumber numberOfDishes
+      programText addLine lineBuilder.finishLine
+  
+      // do not allow anything else to come after this
+      lineBuilder.modeEnd
+    }
+  }
+
   /* Serves <number> */
   def Serves(numberOfDishes: Int) {
     lineBuilder.assertMethod
