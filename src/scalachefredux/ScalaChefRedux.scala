@@ -55,6 +55,7 @@ class ScalaChefRedux {
 
       if (!firstRecipeFound) {
         programState setMainRecipe recipeTitle
+        firstRecipeFound = true
       }
     }
   }
@@ -265,7 +266,7 @@ class ScalaChefRedux {
       lineBuilder setNumber numberOfDishes
       programText addLine lineBuilder.finishLine
   
-      // do not allow anything else to come after this
+      // do not allow anything else to come after this except another recipe
       lineBuilder.modeEnd
     }
   }
