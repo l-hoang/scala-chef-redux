@@ -185,7 +185,6 @@ class ScalaChefRedux {
       // can end here, so mark finished; there is optional part after it
       lineBuilder.setFinished
 
-
       // Optional part can be parsed
       ToGetter
     }
@@ -195,7 +194,27 @@ class ScalaChefRedux {
   // Remove the <ingredient> (from mixing) (bowl <num>)
   // Remove the <ingredient> (from the) (mixing bowl)
   object Remove {
+    def the(ingredient: String) = {
+      finishLine
 
+      lineBuilder.assertMethod
+      // set ingredient + op
+      lineBuilder setString ingredient
+      lineBuilder setOp E_REMOVE
+      lineBuilder setStackNumber1 1
+      // can end here, so mark finished; there is optional part after it
+      lineBuilder.setFinished
+
+      // Optional part can be parsed
+      FromGetter
+    }
+
+    object FromGetter {
+      /* "from mixing" leads into "bowl <number>" */
+      def from(m: MixingWord) = BowlGetter
+      /* "from the" leads into "mixing bowl" */
+      def from(t: TheWord) = MixingGetter
+    }
   }
 
   object Combine {
