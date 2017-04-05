@@ -122,10 +122,16 @@ class ScalaChefRedux {
 
   }
 
+  // Add dry ingredients
+  // Add dry ingredients (to the) (mixing bowl)
+  // Add dry ingredients (to mixing) (bowl <number>)
   object Add {
 
   }
 
+  // Remove the <ingredient>
+  // Remove the <ingredient> (from mixing) (bowl <num>)
+  // Remove the <ingredient> (from the) (mixing bowl)
   object Remove {
 
   }
@@ -137,6 +143,7 @@ class ScalaChefRedux {
   object Divide {
 
   }
+
 
   /* (Liquefy the contents) (of the) (mixing bowl)
    * (Liquefy the contents) (of mixing) (bowl <number>) */
@@ -162,34 +169,39 @@ class ScalaChefRedux {
     }
   }
 
-  // Stir for <number> minutes
-  // Stir mixing bowl <number> for <number> minutes
-  // stir <word> ingredient into mixing bowl 1
-  // stir <word> ingredient into the mixing bowl
+  // (Stir for <number>) minutes
+  // (Stir mixing bowl <number>) for <number> minutes -> below, or use dynamic class?
+  // (Stir bowl <number>) (for <number>) minutes
+  // (stir <word> ingredient) into mixing bowl 1
+  // (stir <word> ingredient) into the mixing bowl
   object Stir {
 
   }
 
 
-  /* mix mixing bowl <number> well (return a dynamic class to grab number) 
-   * mix well (mix first bowl) */
+  /* mix up mixing bowl <number> well 
+   * mix up well */
   object Mix {
     
 
   }
 
-  /* Clean the mixing bowl
-   * Clean mixing bowl <number> */
-  def Clean(m: MixingWord) = {
-    // bowl something
-    // TODO
+  /* Clean up the mixing bowl
+   * Clean up mixing bowl <number> */
+  object Clean = {
+    def up(t: TheWord) {
+      lineBuilder.assertMethod
+      lineBuilder setOp E_CLEAN
 
-  }
+      MixingGetter
+    }
 
-  def Clean(t: TheWord) = {
-    // mixing bowl grabber
+    def up(m: MixingWord) {
+      lineBuilder.assertMethod
+      lineBuilder setOp E_CLEAN
 
-    // TODO
+      BowlGetter
+    }
   }
 
 
@@ -269,16 +281,6 @@ class ScalaChefRedux {
       // do not allow anything else to come after this except another recipe
       lineBuilder.modeEnd
     }
-  }
-
-  /* Serves <number> */
-  def Serves(numberOfDishes: Int) {
-    lineBuilder.assertMethod
-    lineBuilder setOp E_SERVES
-    lineBuilder setNumber numberOfDishes
-    programText addLine lineBuilder.finishLine
-
-    lineBuilder.modeEnd
   }
 
   /* Integers will be converted into this class, and the class will then
@@ -427,6 +429,8 @@ class ScalaChefRedux {
 
       // finish the last function
       programText.endFunction
+      // do a consistency check 
+      programText.consistencyCheck
 
       // run the program
       val runner = new ChefRunner(programState, programText)
