@@ -34,6 +34,18 @@ class ChefRunner(state: ChefState, text: ChefText) {
         case Add(ingredient, bowlNumber) => println("add " + ingredient);
           programState.addOp(ingredient, bowlNumber)
 
+        case Subtract(ingredient, bowlNumber) => println("subtract " + ingredient);
+          programState.subOp(ingredient, bowlNumber)
+
+        case Multiply(ingredient, bowlNumber) => println("multiply " + ingredient);
+          programState.mulOp(ingredient, bowlNumber)
+
+        case Divide(ingredient, bowlNumber) => println("divide " + ingredient);
+          programState.divOp(ingredient, bowlNumber)
+
+        case AddDry(bowlNumber) => println("add dry " + bowlNumber);
+          programState.addDry(bowlNumber)
+
         case Liquefy(ingredient) => println("liquefy " + ingredient);
           programState.liquefyIngredient(ingredient)
 
