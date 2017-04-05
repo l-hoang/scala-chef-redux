@@ -22,6 +22,9 @@ class ChefRunner(state: ChefState, text: ChefText) {
       var nextLine = programText getLine currentLine
 
       nextLine match {
+        case Read(ingredient) => print("read " + ingredient);
+          programState.take(ingredient)
+
         case Push(ingredient, bowlNumber) => println("push " + ingredient);
           programState.pushToBowl(ingredient, bowlNumber)
 

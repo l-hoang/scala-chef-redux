@@ -80,6 +80,24 @@ class ChefState {
     }
   }
 
+  /* Read an int from stdin and save it to an ingredient; note that the
+   * ingredient may not have been declared, so you can add it as a new one.
+   * TODO change this interpretation? */
+  def take(ingredient: String) = {
+    val readValue = scala.io.StdIn.readInt()
+
+    if (readValue < 0) {
+      throw new RuntimeException("ERROR: cannot take a negative value")
+    }
+
+    if (currentIngredients contains ingredient) {
+      currentIngredients(ingredient).setValue(readValue)
+    } else {
+      currentIngredients(ingredient) = new ChefIngredient(ingredient,
+                                       I_EITHER, readValue)
+    }
+  }
+
   /* Push a given ingredient into a certain bowl */
   def pushToBowl(ingredient: String, bowlNumber: Int) = {
     assertBowlExistence(bowlNumber)

@@ -211,6 +211,7 @@ class LineBuilder {
     // TODO
     assertLineFinished
     var toReturn: ChefLine = currentOp match {
+      case E_TAKE => Read(heldString)
       case E_PUT => Push(heldString, stackNumber1)
       case E_FOLD => Pop(stackNumber1, heldString)
       case E_LIQUEFY => Liquefy(heldString)

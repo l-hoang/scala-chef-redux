@@ -64,6 +64,10 @@ object Tester extends ScalaChefRedux {
     Put the "tofu" into the mixing bowl;
     Pour the contents of the mixing bowl into the baking dish; 
 
+    Take the "tofu" from the refrigerator;
+    Put the "tofu" into the mixing bowl;
+    Pour the contents of the mixing bowl into baking dish 2; 
+
     //take the "thing" from the refridge
     //take "thing" from fridge
     //fold the <thing> into bowl <num>
@@ -75,9 +79,7 @@ object Tester extends ScalaChefRedux {
     //liquify the <thing>
     //printLines;
 
-    Recipe serves 1;
-
-    Liquefy the "eggs";
+    Recipe serves 2;
 
     Enjoy your meal;
   }

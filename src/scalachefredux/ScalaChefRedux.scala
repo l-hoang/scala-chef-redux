@@ -93,10 +93,29 @@ class ScalaChefRedux {
   }
 
 
+  /* Take the <ingredient> from the refrigerator */
   object Take {
-    // a, an, the, some follow take
-    def a(ingredient: String) = {
+    def the(ingredient: String) = {
+      finishLine
 
+      lineBuilder.assertMethod
+      // set ingredient + op
+      lineBuilder setString ingredient
+      lineBuilder setOp E_TAKE
+
+      FromGetter
+    }
+
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
+
+    object FromGetter {
+      def from(t: TheWord) = RefrigeratorGetter
+    }
+
+    object RefrigeratorGetter {
+      def refrigerator = lineBuilder.setFinished
     }
   }
 
