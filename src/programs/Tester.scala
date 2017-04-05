@@ -10,6 +10,7 @@ object Tester extends ScalaChefRedux {
     // add some ingredients
     Ingredients;
 
+    0 ct "filler";
     1 ct "tofu";
     72 g "haricot beans" ;
     101 ct "eggs";
@@ -64,11 +65,12 @@ object Tester extends ScalaChefRedux {
     Pour the contents of the mixing bowl into the baking dish; 
 
     Take the "tofu" from the refrigerator;
-    Put the "tofu" into the mixing bowl;
+    Put some "filler" into the mixing bowl;
     Add the "zucchinis" to the mixing bowl;
     Add the "zucchinis" to mixing bowl 1;
     //Remove the "zucchinis" from the mixing bowl;
     Remove the "zucchinis" from mixing bowl 1;
+    Combine the "tofu" into the mixing bowl;
     Pour the contents of the mixing bowl into baking dish 2; 
 
     //take the "thing" from the refridge

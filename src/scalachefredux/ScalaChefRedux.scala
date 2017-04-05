@@ -217,8 +217,23 @@ class ScalaChefRedux {
     }
   }
 
+  /* Combine the <ing> into the mixing bowl
+   * Combine the <ing> into mixing bowl <#> */
   object Combine {
+    def the(ingredient: String) = {
+      finishLine
 
+      lineBuilder.assertMethod
+      // set ingredient + op
+      lineBuilder setString ingredient
+      lineBuilder setOp E_COMBINE
+      lineBuilder setStackNumber1 1
+      // can end here, so mark finished; there is optional part after it
+      lineBuilder.setFinished
+
+      // Optional part can be parsed
+      IntoGetter
+    }
   }
 
   object Divide {
