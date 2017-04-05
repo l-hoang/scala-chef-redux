@@ -40,8 +40,8 @@ class ScalaChefRedux {
   ///////////
   // TITLE //
   ///////////
-  /* Title parsing; Should only appear at the beginning of a program */
 
+  /* Title parsing; Should only appear at the beginning of a program */
   object Title {
     def -(recipeTitle: String) = {
       if (recipeTitle == "") {
@@ -85,11 +85,20 @@ class ScalaChefRedux {
     }
   }
 
+  /* Continues parsing with "into mixing" or "into the" */
   object IntoGetter {
     /* "into mixing" leads into "bowl <number>" */
     def into(m: MixingWord) = BowlGetter
     /* "into the" leads into "mixing bowl" */
     def into(t: TheWord) = MixingGetter
+  }
+
+  /* Continues parsing with "to mixing" or "to the" */
+  object ToGetter {
+    /* "to mixing" leads into "bowl <number>" */
+    def to(m: MixingWord) = BowlGetter
+    /* "to the" leads into "mixing bowl" */
+    def to(t: TheWord) = MixingGetter
   }
 
 
@@ -165,7 +174,21 @@ class ScalaChefRedux {
   // Add dry ingredients (to the) (mixing bowl)
   // Add dry ingredients (to mixing) (bowl <number>)
   object Add {
+    def the(ingredient: String) = {
+      finishLine
 
+      lineBuilder.assertMethod
+      // set ingredient + op
+      lineBuilder setString ingredient
+      lineBuilder setOp E_ADD
+      lineBuilder setStackNumber1 1
+      // can end here, so mark finished; there is optional part after it
+      lineBuilder.setFinished
+
+
+      // Optional part can be parsed
+      ToGetter
+    }
   }
 
   // Remove the <ingredient>

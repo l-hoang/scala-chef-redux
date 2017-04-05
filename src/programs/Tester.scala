@@ -61,11 +61,12 @@ object Tester extends ScalaChefRedux {
     Liquefy the "eggs";
     Put the "eggs" into the mixing bowl;
     Fold the "tofu" into the mixing bowl;
-    Put the "tofu" into the mixing bowl;
     Pour the contents of the mixing bowl into the baking dish; 
 
     Take the "tofu" from the refrigerator;
     Put the "tofu" into the mixing bowl;
+    Add the "zucchinis" to the mixing bowl;
+    Add the "zucchinis" to the mixing bowl;
     Pour the contents of the mixing bowl into baking dish 2; 
 
     //take the "thing" from the refridge

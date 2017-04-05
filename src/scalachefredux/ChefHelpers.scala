@@ -124,6 +124,16 @@ class ChefStack {
     }
   }
 
+  /* Add to top element of this stack */
+  def add(toAdd: Int) = {
+    if (javaDeque.isEmpty) {
+      throw new RuntimeException("ERROR: can't add op with an empty bowl")
+    }
+
+    val ingredient = javaDeque.peek
+    ingredient setValue (ingredient.asNumber + toAdd)
+  }
+
   /* Move an ingredient stirNum places down the stack */
   def stir(stirNum: Int) = {
     // TODO

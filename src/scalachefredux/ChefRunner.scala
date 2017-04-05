@@ -30,6 +30,9 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
         case Pop(bowlNumber, ingredient) => println("pop " + bowlNumber);
           programState.popToIngredient(bowlNumber, ingredient)
+        
+        case Add(ingredient, bowlNumber) => println("add " + ingredient);
+          programState.addOp(ingredient, bowlNumber)
 
         case Liquefy(ingredient) => println("liquefy " + ingredient);
           programState.liquefyIngredient(ingredient)

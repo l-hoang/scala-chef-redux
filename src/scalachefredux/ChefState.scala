@@ -115,6 +115,12 @@ class ChefState {
     currentIngredients(ingredient) setValue (currentBowls(bowlNumber).pop.asNumber)
   }
 
+  /* Do in place addition of an ingredient and the item at the top of a bowl */
+  def addOp(ingredient: String, bowlNumber: Int) {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber) add currentIngredients(ingredient).asNumber
+  }
+
   /* Liquefy an ingredient we have */
   def liquefyIngredient(ingredient: String) = {
     currentIngredients(ingredient).setInterpretation(I_LIQUID)
