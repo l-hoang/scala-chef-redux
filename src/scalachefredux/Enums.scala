@@ -53,3 +53,6 @@ object dish extends DishWord
 
 abstract sealed class MealWord
 object meal extends MealWord
+
+abstract sealed class IngredientsWord
+object ingredients extends IngredientsWord
