@@ -13,7 +13,7 @@ case class Subtract(ingredient: String, bowlNumber: Int) extends ChefLine
 case class Multiply(ingredient: String, bowlNumber: Int) extends ChefLine
 case class Divide(ingredient: String, bowlNumber: Int) extends ChefLine
 
-case class AddDry(ingredient: String, bowlNumber: Int) extends ChefLine
+case class AddDry(bowlNumber: Int) extends ChefLine
 
 case class Liquefy(ingredient: String) extends ChefLine // Liquefy
 case class LiquefyContents(bowlNumber: Int) extends ChefLine // Liquefy
