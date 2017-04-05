@@ -193,6 +193,18 @@ class ScalaChefRedux {
     def an(ingredient: String) = the(ingredient)
     def some(ingredient: String) = the(ingredient)
 
+    def dry(i: IngredientsWord) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      // set ingredient + op
+      lineBuilder setOp E_ADDDRY
+      lineBuilder setStackNumber1 1
+      // can end here, so mark finished; there is optional part after it
+      lineBuilder.setFinished
+
+      ToGetter
+    }
   }
 
   // Remove the <ingredient>

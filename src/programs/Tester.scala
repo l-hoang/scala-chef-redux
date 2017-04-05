@@ -12,14 +12,14 @@ object Tester extends ScalaChefRedux {
 
     0 ct "filler";
     1 ct "tofu";
-    72 g "haricot beans" ;
+    72 g "haricot beans" ; // dry
     101 ct "eggs";
-    108 g "lard";
+    108 g "lard"; // dry
     111 cups "oil";
     32 ct "zucchinis";
     119 ml "water";
-    114 g "red salmon";
-    100 g "dijon mustard";
+    114 g "red salmon"; // dry
+    100 g "dijon mustard"; // dry
     33 ct "potatoes";
 
     Method;
@@ -66,24 +66,19 @@ object Tester extends ScalaChefRedux {
 
     Take the "tofu" from the refrigerator;
     Put some "filler" into the mixing bowl;
-    Add the "zucchinis" to the mixing bowl;
-    Add the "zucchinis" to mixing bowl 1;
+    Add the "zucchinis";
+    Add the "zucchinis";
     //Remove the "zucchinis" from the mixing bowl;
-    Remove the "zucchinis" from mixing bowl 1;
-    //Combine the "tofu" into the mixing bowl;
-    Divide some "tofu" into the mixing bowl;
-    Pour the contents of the mixing bowl into baking dish 2; 
+    Remove the "zucchinis";
+    Divide the "zucchinis";
+    Combine the "zucchinis";
 
-    //take the "thing" from the refridge
-    //take "thing" from fridge
-    //fold the <thing> into bowl <num>
-    //add the <thing> into bowl <n>
-    //remove the <thing> from bowl <>
-    //divide the <hing from bowl <>
-    //add dry ingredients to bowl <>
-    //liquify <thing>
-    //liquify the <thing>
-    //printLines;
+    Put some "eggs" into the mixing bowl;
+    Add dry ingredients;
+    Put some "eggs" into the mixing bowl;
+    Add dry ingredients to the mixing bowl;
+
+    Pour the contents of the mixing bowl into baking dish 2; 
 
     Recipe serves 2;
 
