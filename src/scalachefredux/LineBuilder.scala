@@ -233,11 +233,11 @@ class LineBuilder {
       case E_STIR => Stir(heldNumber, stackNumber1)
       case E_STIR_I => StirIngredient(heldString, stackNumber1)
       case E_MIX => Mix(stackNumber1)
-      case E_POUR => CopyStack(stackNumber1, stackNumber2)
       case E_CLEAN => ClearStack(stackNumber1)
+      case E_POUR => CopyStack(stackNumber1, stackNumber2)
 
-      case E_LOOP => LoopStart(heldVerb, heldString)
-      case E_LOOP_END => LoopEnd(heldVerb, heldString)
+      case E_LOOP => LoopStart(heldVerb, heldString, -1)
+      case E_LOOP_END => LoopEnd(heldVerb, heldString, -1)
 
       case E_SERVES => PrintStacks(heldNumber)
       case _ => throw new RuntimeException("Valid op not set for finish line")

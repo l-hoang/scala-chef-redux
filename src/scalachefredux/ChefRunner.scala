@@ -20,6 +20,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
     // TODO change this while true to something better?
     while (currentLine != mainLastLine || inFunction) {
       var nextLine = programText getLine currentLine
+      var jumped = false
 
       nextLine match {
         case Read(ingredient) => print("read " + ingredient);
@@ -68,13 +69,26 @@ class ChefRunner(state: ChefState, text: ChefText) {
           println("copy " + bowlNumber + dishNumber)
           programState.bowlToDish(bowlNumber, dishNumber)
 
+        case LoopStart(verb, check, loopEnd) =>
+          if (programState.ingredientIsZero(check)) {
+            currentLine = loopEnd
+            jumped = true
+          }
+
+        case LoopEnd(verb, decrement, loopBegin) =>
+          programState.decrementIngredient(decrement)
+          currentLine = loopBegin
+          jumped = true
+
         case PrintStacks(numToPrint) => println("print stacks " + numToPrint);
           programState.printDishes(numToPrint)
 
         case x => throw new RuntimeException("Invalid line for ChefRunner " + x)
       }
 
-      currentLine += 1
+      if (!jumped) {
+        currentLine += 1
+      }
     }
   }
 }

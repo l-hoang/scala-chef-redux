@@ -202,6 +202,17 @@ class ChefState {
     }
   }
 
+  /* Returns boolean if ingredient has a current value of zero */
+  def ingredientIsZero(ingredient: String) = 
+    currentIngredients(ingredient).asNumber == 0
+
+  def decrementIngredient(ingredient: String) = {
+    if (ingredient != "") {
+      val i = currentIngredients(ingredient)
+      i.setValue(i.asNumber - 1)
+    }
+  }
+
   /* Prints the contents of the baking dishes: note it destroys the baking
    * dishes in question as it alters them */
   def printDishes(numToPrint: Int) = {
