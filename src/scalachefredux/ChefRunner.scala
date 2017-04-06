@@ -80,6 +80,11 @@ class ChefRunner(state: ChefState, text: ChefText) {
           currentLine = loopBegin
           jumped = true
 
+
+        case Break(loopEnd) =>
+          currentLine = loopEnd
+          jumped = true
+
         case PrintStacks(numToPrint) => println("print stacks " + numToPrint);
           programState.printDishes(numToPrint)
 

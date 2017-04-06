@@ -24,6 +24,7 @@ object Tester3 extends ScalaChefRedux {
     3 ct "threes";
 
     10 ct "wabbit";
+    3 ct "bleh";
 
     Method;
     // put hello into the bowl
@@ -65,7 +66,15 @@ object Tester3 extends ScalaChefRedux {
     Clean the bowl;
 
     "Kill" the "wabbit";
-    Put some "tofu" into the mixing bowl;
+      Put the "threes" into mixing bowl 3;
+      Fold the "bleh" into mixing bowl 3;
+
+      "Fight" the "bleh";
+        Put some "threes" into mixing bowl 1;
+        Set aside;
+      "yay" the "bleh" until "fighted"
+      
+      Put some "tofu" into the mixing bowl;
     "Beat" the "wabbit" until "killed";
 
     Pour the contents of the mixing bowl into baking dish 2;

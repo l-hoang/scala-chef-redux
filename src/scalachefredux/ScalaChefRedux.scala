@@ -576,9 +576,12 @@ class ScalaChefRedux {
     }
   }
 
+  /* Set aside */
   object Set {
     def aside = {
-
+      finishLine
+      lineBuilder setOp E_SET
+      lineBuilder.setFinished
     }
 
   }

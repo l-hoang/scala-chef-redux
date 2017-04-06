@@ -239,6 +239,8 @@ class LineBuilder {
       case E_LOOP => LoopStart(heldVerb, heldString, -1)
       case E_LOOP_END => LoopEnd(heldVerb, heldString, -1)
 
+      case E_SET => Break(-1)
+
       case E_SERVES => PrintStacks(heldNumber)
       case _ => throw new RuntimeException("Valid op not set for finish line")
     }
