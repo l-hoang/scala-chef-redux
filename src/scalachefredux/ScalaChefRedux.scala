@@ -381,7 +381,23 @@ class ScalaChefRedux {
     object MinutesGetter {
       def minutes = lineBuilder.setFinished
     }
+
+    def the(ingredient: String) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_STIR_I
+      lineBuilder setString ingredient
+
+      IntoGetter
+    }
+
+    // the aliases
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
   }
+
 
 
   /* mix up mixing bowl <number> well 

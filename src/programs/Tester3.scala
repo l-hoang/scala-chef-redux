@@ -21,6 +21,7 @@ object Tester3 extends ScalaChefRedux {
     114 g "red salmon"; // dry
     100 g "dijon mustard"; // dry
     33 ct "potatoes";
+    3 ct "threes";
 
     Method;
     // put hello into the bowl
@@ -42,6 +43,7 @@ object Tester3 extends ScalaChefRedux {
 
     // should result in ellHo
     Stir bowl 2 fr 3 minutes;
+    Stir the "threes" into mixing bowl 2;
 
     Pour the contents of the mixing bowl into the baking dish; 
     Pour the contents of mixing bowl 2 into the baking dish; 
