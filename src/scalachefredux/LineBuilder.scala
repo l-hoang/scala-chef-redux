@@ -221,11 +221,13 @@ class LineBuilder {
       case E_TAKE => Read(heldString)
       case E_PUT => Push(heldString, stackNumber1)
       case E_FOLD => Pop(stackNumber1, heldString)
+
       case E_ADD => Add(heldString, stackNumber1)
       case E_REMOVE => Subtract(heldString, stackNumber1)
       case E_COMBINE => Multiply(heldString, stackNumber1)
       case E_DIVIDE => Divide(heldString, stackNumber1)
       case E_ADDDRY => AddDry(stackNumber1)
+
       case E_LIQUEFY => Liquefy(heldString)
       case E_LIQUEFY_CONTENTS => LiquefyContents(stackNumber1)
       case E_STIR => Stir(heldNumber, stackNumber1)

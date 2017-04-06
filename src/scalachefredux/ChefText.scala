@@ -24,6 +24,8 @@ SOFTWARE.
 package scalachefredux
 
 import scala.collection.mutable
+import scala.collection.mutable.ListBuffer
+import scala.collection.immutable
 
 /* Holds Chef lines as they are build by the line builder */
 class ChefText {
@@ -52,6 +54,40 @@ class ChefText {
     def getEndLine = endLine
   }
 
+  class LoopInfo {
+    var startLine = -1
+    var endLine = -1
+    var ingredientToCheck = ""
+    var ingredientToDecrement = ""
+
+    /* Set loop start */
+    def setStartLine(s: Int) = {
+      startLine = s
+    }
+
+    /* Set loop end (i.e. line AFTER loop) */
+    def setEndLine(e: Int) = {
+      endLine = e
+    }
+
+    /* Set the ingredient to check */
+    def setToCheck(s: String) = ingredientToCheck = s
+
+    /* Set the ingredient to decrement */
+    def setToDecrement(s: String) = ingredientToDecrement = s
+
+    /* Get the start line */
+    def getStartLine = startLine
+    /* Get the end line */
+    def getEndLine = endLine
+
+    /* Get ingredient to check */
+    def getToCheck = ingredientToCheck
+
+    /* Get ingredient to decrement */
+    def getToDecrement = ingredientToDecrement
+  }
+
   // start at line 1
   var currentLine = 1 
 
@@ -62,12 +98,16 @@ class ChefText {
   val recipeIngredients = new mutable.HashMap[String, 
                           mutable.HashMap[String, ChefIngredient]]
 
-
   // Maps line numbers to actual ChefLines operations
   val lines = new mutable.HashMap[Int, ChefLine]
   // Maps function names to start/end
   val functions = new mutable.HashMap[String, FunctionInfo]
-
+  // Maps verbs to loop info
+  val loops = new mutable.HashMap[String, LoopInfo]
+  // stack of loops currently active
+  val loopStack = new ListBuffer[String]
+  // Maps verbs to a break queue
+  val breakQueue = new mutable.HashMap[String, ListBuffer[Int]]
 
   ///////////
   // Lines //
@@ -77,6 +117,53 @@ class ChefText {
   /* Adds a Chef Line to the program text. */
   def addLine(newLine: ChefLine) = {
     lines(currentLine) = newLine 
+
+    // TODO
+    newLine match {
+      case LoopStart(heldVerb, ingredientToCheck, -1) =>
+        val newLoop = new LoopInfo
+        newLoop setStartLine currentLine
+        newLoop setToCheck ingredientToCheck
+        if (loops contains heldVerb) {
+          throw new RuntimeException("ERROR: " + heldVerb + " already used in loop")
+        }
+        loops(heldVerb) = newLoop
+        // add to currently open loops
+        loopStack prepend heldVerb
+        // intialize break stack for this loop
+        breakQueue(heldVerb) = new ListBuffer
+      case Break(-1) =>
+        // add to current loop's break stack
+        breakQueue(loopStack.head).prepend(currentLine)
+      case LoopEnd(heldVerb, ingredientToDecrement, -1) =>
+        val loopInfo = loops(heldVerb)
+
+        if (ingredientToDecrement != "") {
+          loopInfo setToDecrement ingredientToDecrement
+        }
+        loopInfo setEndLine (currentLine + 1)
+
+        if ((loopStack remove 0) != heldVerb) {
+          throw new RuntimeException("ERROR: ending different loop")
+        }
+
+        // go over break stack and update the lines accordingly
+        for (lineNumber <- breakQueue(heldVerb)) {
+          lines(lineNumber) = Break(currentLine + 1)
+        }
+
+        breakQueue remove heldVerb
+
+        // update the loop start line
+        lines(loopInfo.getStartLine) = LoopStart(heldVerb, loopInfo.getToCheck,
+                                       currentLine + 1)
+
+        // update the loop end line
+        lines(currentLine) = LoopEnd(heldVerb, ingredientToDecrement, 
+                                     loopInfo.getStartLine)
+      case _ => // do nothing
+    }
+
     //println(newLine)
     currentLine += 1
   }

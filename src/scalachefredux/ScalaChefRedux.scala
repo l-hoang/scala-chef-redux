@@ -536,6 +536,40 @@ class ScalaChefRedux {
 
   // TODO verbs: implicits most likely
 
+
+  /* convert strings to loop builders */
+  implicit def string2Loop(s: String) = new LoopBuilder(s.toLowerCase)
+
+  class LoopBuilder(s: String) {
+    val verb = if (s endsWith "e") s + "d" else s + "ed"
+    
+    // TODO
+    def the(ingredient: String) = {
+      // until getter => verb end, else verb beginning
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_LOOP;
+      lineBuilder setVerb verb
+    }
+
+    def until(lVerb: String) = {
+      // original verb can be ignored, important one is lVerb
+      val finalVerb = lVerb.toLowerCase
+
+
+    }
+
+    object UntilGetter {
+      def until(lVerb: String) = {
+        // TODO
+
+      }
+    }
+    
+
+  }
+
   object Set {
 
   }
