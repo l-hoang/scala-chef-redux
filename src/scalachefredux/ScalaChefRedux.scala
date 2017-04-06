@@ -400,9 +400,42 @@ class ScalaChefRedux {
 
 
 
-  /* mix up mixing bowl <number> well 
-   * mix up well */
+  /* Mix bowl <number> well 
+   * Mix the bowl well 
+   * Mix well */
   object Mix {
+    def the(b: BowlWord) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_MIX;
+      lineBuilder setStackNumber1 1
+
+      WellGetter
+    }
+
+    def bowl(bowlNumber: Int) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_MIX;
+      lineBuilder setStackNumber1 bowlNumber
+
+      WellGetter
+    }
+
+    def well = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_MIX;
+      lineBuilder setStackNumber1 1
+      lineBuilder.setFinished
+    }
+
+    object WellGetter {
+      def well = lineBuilder.setFinished
+    }
     
 
   }
@@ -410,6 +443,25 @@ class ScalaChefRedux {
   /* Clean up the mixing bowl
    * Clean up mixing bowl <number> */
   object Clean {
+    def the(b: BowlWord) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_CLEAN;
+      lineBuilder setStackNumber1 1
+      lineBuilder.setFinished
+    }
+
+    def bowl(bowlNumber: Int) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_CLEAN;
+      lineBuilder setStackNumber1 bowlNumber
+      lineBuilder.setFinished
+    }
+
+    // TODO remove this syntax pattern?
     def up(t: TheWord) = {
       finishLine
 
