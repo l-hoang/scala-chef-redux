@@ -182,7 +182,33 @@ class ChefStack {
 
   /* Move an ingredient stirNum places down the stack */
   def stir(stirNum: Int) = {
-    // TODO
+    if (javaDeque.size <= 1) {
+      // do nothing
+    } else if (stirNum >= (javaDeque.size - 1)) {
+      // move top to bottom
+      javaDeque add javaDeque.pop
+    } else {
+      val originalSize = javaDeque.size
+      val topI = javaDeque.pop
+
+      // number of things left in the stack
+      val numI = javaDeque.size
+      val numAfterStir = numI - stirNum
+
+      for (i <- 1 to stirNum) {
+        javaDeque add javaDeque.pop
+      }
+
+      javaDeque add topI
+
+      for (i <- 1 to numAfterStir) {
+        javaDeque add javaDeque.pop
+      }
+
+      if (originalSize != javaDeque.size) {
+        throw new RuntimeException("ERROR: stir error")
+      }
+    }
   }
 
   /* Randomize the order of the stack */
