@@ -52,6 +52,12 @@ class ChefRunner(state: ChefState, text: ChefText) {
         case LiquefyContents(bowlNumber) => println("liquefy " + bowlNumber);
           programState.liquefyBowl(bowlNumber)
 
+        case Stir(stirNum, bowlNumber) => println("stir " + stirNum);
+          programState.stir(stirNum, bowlNumber)
+
+        case StirIngredient(ingredient, bowlNumber) => println("stir I" + ingredient);
+          programState.stirIngredient(ingredient, bowlNumber)
+
         case ClearStack(bowlNumber) => println("clear " + bowlNumber);
           programState.clearBowl(bowlNumber)
 

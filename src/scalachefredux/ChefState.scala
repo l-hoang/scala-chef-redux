@@ -165,6 +165,18 @@ class ChefState {
     currentBowls(bowlNumber).liquefy
   }
 
+  /* Stir op */
+  def stir(stirNum: Int, bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber).stir(stirNum)
+  }
+
+  /* Stir op, but with an ingredient */
+  def stirIngredient(ingredient: String, bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber).stir(currentIngredients(ingredient).asNumber)
+  }
+
   /* Clear a bowl */
   def clearBowl(bowlNumber: Int) = {
     assertBowlExistence(bowlNumber)
