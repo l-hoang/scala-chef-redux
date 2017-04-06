@@ -222,6 +222,7 @@ class LineBuilder {
       case E_LIQUEFY => Liquefy(heldString)
       case E_LIQUEFY_CONTENTS => LiquefyContents(stackNumber1)
       case E_STIR => Stir(heldNumber, stackNumber1)
+      case E_STIR_I => StirIngredient(heldString, stackNumber1)
       case E_POUR => CopyStack(stackNumber1, stackNumber2)
       case E_CLEAN => ClearStack(stackNumber1)
       case E_SERVES => PrintStacks(heldNumber)
