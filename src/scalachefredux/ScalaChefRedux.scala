@@ -317,11 +317,31 @@ class ScalaChefRedux {
   }
 
   // (Stir for <number>) minutes
-  // (Stir mixing bowl <number>) for <number> minutes -> below, or use dynamic class?
   // (Stir bowl <number>) (for <number>) minutes
+  // (Stir the bowl) (for <number>) minutes
   // (stir <word> ingredient) into mixing bowl 1
   // (stir <word> ingredient) into the mixing bowl
   object Stir {
+    def bowl(bowlNumber: Int) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_STIR
+      lineBuilder setStackNumber1 bowlNumber
+
+      ForGetter
+    }
+
+    def the(b: BowlWord) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_STIR
+      lineBuilder setStackNumber1 1
+      
+      ForGetter
+    }
+
     // for doens't work, unfortunately, so have to use _for
     def _for(num: Int) =  {
       finishLine
@@ -340,6 +360,22 @@ class ScalaChefRedux {
     def fOr(num: Int) = _for(num)
     def f0r(num: Int) = _for(num)
     def fr(num: Int) = _for(num)
+
+    /* Grab the for in the case when a mixing bowl is included in the 
+     * instruction */
+    object ForGetter {
+      def _for(num: Int) = {
+        lineBuilder setNumber num
+        MinutesGetter
+      }
+
+      // aliases
+      def FOR(num: Int) = _for(num)
+      def For(num: Int) = _for(num)
+      def fOr(num: Int) = _for(num)
+      def f0r(num: Int) = _for(num)
+      def fr(num: Int) = _for(num)
+    }
 
     /* grab minutes */
     object MinutesGetter {

@@ -30,17 +30,24 @@ object Tester3 extends ScalaChefRedux {
     Put the "eggs" into the mixing bowl;
     Put the "haricot beans" into the mixing bowl;
 
+    Put some "oil" into mixing bowl 2;
+    Put some "lard" into mixing bowl 2;
+    Put some "lard" into mixing bowl 2;
+    Put the "eggs" into mixing bowl 2;
+    Put the "haricot beans" into mixing bowl 2;
+
     // make it all text
     Liquefy the contents of the mixing bowl;
+    Liquefy the contents of mixing bowl 2;
 
-    // should result in ellho
-    Stir fr 3 minutes;
+    // should result in ellHo
+    Stir bowl 2 fr 3 minutes;
 
     Pour the contents of the mixing bowl into the baking dish; 
+    Pour the contents of mixing bowl 2 into the baking dish; 
 
     Recipe serves 1;
 
     Enjoy your meal;
   }
-
 }
