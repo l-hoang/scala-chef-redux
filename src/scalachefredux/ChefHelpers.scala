@@ -213,7 +213,20 @@ class ChefStack {
 
   /* Randomize the order of the stack */
   def mix = {
-    // TODO
+    if (javaDeque.size > 1) {
+      val buffer = new mutable.ArrayBuffer[ChefIngredient]
+
+      while (!javaDeque.isEmpty) {
+        buffer append javaDeque.pop
+      }
+
+      val shuffled = (new scala.util.Random) shuffle buffer
+
+      for (i <- shuffled) {
+        javaDeque add i
+      }
+    }
+    // do nothing otherwise since mixing a stack with 1 or 0 is pointless
   }
 
   /* Empty the stack */

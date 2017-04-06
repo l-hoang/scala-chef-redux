@@ -436,8 +436,6 @@ class ScalaChefRedux {
     object WellGetter {
       def well = lineBuilder.setFinished
     }
-    
-
   }
 
   /* Clean up the mixing bowl

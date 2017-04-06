@@ -177,6 +177,12 @@ class ChefState {
     currentBowls(bowlNumber).stir(currentIngredients(ingredient).asNumber)
   }
 
+  /* Randomize a stack */
+  def mix(bowlNumber: Int) = {
+    assertBowlExistence(bowlNumber)
+    currentBowls(bowlNumber).mix
+  }
+
   /* Clear a bowl */
   def clearBowl(bowlNumber: Int) = {
     assertBowlExistence(bowlNumber)

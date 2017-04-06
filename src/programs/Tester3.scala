@@ -48,6 +48,18 @@ object Tester3 extends ScalaChefRedux {
     Pour the contents of the mixing bowl into the baking dish; 
     Pour the contents of mixing bowl 2 into the baking dish; 
 
+    Clean the bowl;
+
+    Put some "oil" into the mixing bowl;
+    Put some "lard" into the mixing bowl;
+    Put some "lard" into the mixing bowl;
+    Put the "eggs" into the mixing bowl;
+    Put the "haricot beans" into the mixing bowl;
+
+    Mix the bowl well;
+    Liquefy the contents of mixing bowl 1;
+    Pour the contents of the mixing bowl into the baking dish; 
+
     Recipe serves 1;
 
     Enjoy your meal;
