@@ -182,7 +182,7 @@ class ChefStack {
 
   /* Move an ingredient stirNum places down the stack */
   def stir(stirNum: Int) = {
-    if (javaDeque.size <= 1) {
+    if (javaDeque.size <= 1 || stirNum <= 0) {
       // do nothing
     } else if (stirNum >= (javaDeque.size - 1)) {
       // move top to bottom
