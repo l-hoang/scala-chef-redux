@@ -15,6 +15,7 @@ case object E_ADDDRY extends ChefOp
 case object E_LIQUEFY extends ChefOp
 case object E_LIQUEFY_CONTENTS extends ChefOp
 case object E_STIR extends ChefOp
+case object E_STIR_I extends ChefOp
 case object E_MIX extends ChefOp
 case object E_CLEAN extends ChefOp
 case object E_POUR extends ChefOp
