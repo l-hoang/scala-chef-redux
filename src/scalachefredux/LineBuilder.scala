@@ -12,7 +12,6 @@ class LineBuilder {
   case object M_END extends ParseMode
   case object M_DONE extends ParseMode
 
-
   /////////////////////
   // State variables //
   /////////////////////
@@ -27,7 +26,7 @@ class LineBuilder {
 
   // The current recipe being parsed by the line builder
   var currentRecipe = ""
-  
+
   // TODO kill if not needed
   case object NULLINGREDIENT extends ChefIngredient("null", I_NULL)
   
@@ -38,6 +37,7 @@ class LineBuilder {
   var stackNumber2 = -1
   // TODO kill if not needed
   var heldIngredient: ChefIngredient = NULLINGREDIENT
+  var heldVerb = ""
 
   // mark if a line is ready to be returned
   var lineFinished = false
@@ -184,6 +184,12 @@ class LineBuilder {
     heldIngredient = newIngredient
   }
 
+  /* Set the held verb */
+  def setVerb(newVerb: String) = {
+    assertMethod
+    heldVerb = newVerb
+  }
+
   /* Set lineFinished to true */
   def setFinished = lineFinished = true
 
@@ -196,6 +202,7 @@ class LineBuilder {
     heldNumber = -1
     stackNumber1 = -1
     stackNumber2 = -1
+    heldVerb = ""
     lineFinished = false
   }
 
@@ -226,6 +233,10 @@ class LineBuilder {
       case E_MIX => Mix(stackNumber1)
       case E_POUR => CopyStack(stackNumber1, stackNumber2)
       case E_CLEAN => ClearStack(stackNumber1)
+
+      case E_LOOP => LoopStart(heldVerb, heldString)
+      case E_LOOP_END => LoopEnd(heldVerb, heldString)
+
       case E_SERVES => PrintStacks(heldNumber)
       case _ => throw new RuntimeException("Valid op not set for finish line")
     }

@@ -27,8 +27,12 @@ case class ClearStack(bowlNumber: Int) extends ChefLine // Clean
 
 case class CopyStack(bowlNumber: Int, dishNumber: Int) extends ChefLine // Pour
 
+case class LoopStart(verb: String, ingredient: String) extends ChefLine
+case class LoopEnd(verb: String, ingredient: String) extends ChefLine
 
-case object Break extends ChefLine // Set
+case class Break(breakLine: Int) extends ChefLine // Set
+
+
 case class PrintStacks(num: Int) extends ChefLine // Serves
 
 case object Useless extends ChefLine // To appease type checker
