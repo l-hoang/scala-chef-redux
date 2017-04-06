@@ -21,6 +21,8 @@ case class LiquefyContents(bowlNumber: Int) extends ChefLine // Liquefy
 case class Stir(num: Int, bowlNumber: Int) extends ChefLine
 case class StirIngredient(ingredient: String, bowlNumber: Int) extends ChefLine
 
+case class Mix(bowlNumber: Int) extends ChefLine
+
 case class ClearStack(bowlNumber: Int) extends ChefLine // Clean
 
 case class CopyStack(bowlNumber: Int, dishNumber: Int) extends ChefLine // Pour
