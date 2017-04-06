@@ -322,7 +322,29 @@ class ScalaChefRedux {
   // (stir <word> ingredient) into mixing bowl 1
   // (stir <word> ingredient) into the mixing bowl
   object Stir {
+    // for doens't work, unfortunately, so have to use _for
+    def _for(num: Int) =  {
+      finishLine
 
+      lineBuilder.assertMethod
+      lineBuilder setOp E_STIR
+      lineBuilder setNumber num
+      lineBuilder setStackNumber1 1
+    
+      MinutesGetter
+    }
+
+    // aliases for for
+    def FOR(num: Int) = _for(num)
+    def For(num: Int) = _for(num)
+    def fOr(num: Int) = _for(num)
+    def f0r(num: Int) = _for(num)
+    def fr(num: Int) = _for(num)
+
+    /* grab minutes */
+    object MinutesGetter {
+      def minutes = lineBuilder.setFinished
+    }
   }
 
 
