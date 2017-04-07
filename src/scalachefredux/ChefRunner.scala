@@ -92,8 +92,8 @@ class ChefRunner(state: ChefState, text: ChefText) {
           jumped = true
 
         case Call(function) =>
-          // TODO
           // change chef state to context switch to function
+          programState.contextSwitch(programText, function)
 
 
           // "jump" to function
@@ -120,6 +120,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
       // and restore state
       if (currentLine == functionEndLineStack.head) {
         // restore program state
+        programState.contextReturn
 
         functionEndLineStack remove 0
         if (functionEndLineStack.isEmpty) {
