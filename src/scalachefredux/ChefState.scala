@@ -221,16 +221,31 @@ class ChefState {
 
   /* Switch to a particular function given its name */
   def contextSwitch(text: ChefText, recipeName: String) = {
-    // TODO
+    // push current ingredients onto stack
+    ingredientStack prepend currentIngredients
+    // load new recipe's ingredients
+    currentIngredients = text.getStartingIngredients(recipeName)
+
+    // copy bowls/dishes and push onto stacks
+    val bowlsCopy = HelperFunctions.deepCopyStacks(currentBowls)
+    val dishesCopy = HelperFunctions.deepCopyStacks(currentDishes)
+    bowlStack prepend bowlsCopy
+    dishStack prepend dishesCopy
   }
 
 
   /* Switch back to previous context, making sure to copy the first mixing bowl
    * back to the caller */
   def contextReturn = {
-    // TODO
-    
+    val iter = currentBowls(1).descendingIterator
+    currentBowls = bowlStack remove 0
+    currentDishes = dishStack remove 0
+    currentIngredients = ingredientStack remove 0
 
+    // copy mixing bowl things over
+    while (iter.hasNext) {
+      currentBowls(1) push iter.next
+    }
   }
 
   /* Prints the contents of the baking dishes: note it destroys the baking

@@ -44,6 +44,10 @@ class ScalaChefRedux {
   /* Title parsing; Should only appear at the beginning of a program */
   object Title {
     def -(recipeTitle: String) = {
+      if (firstRecipeFound) {
+        finishLine
+      }
+
       if (recipeTitle == "") {
         throw new RuntimeException("ERROR: Recipe name can't be empty")
       }

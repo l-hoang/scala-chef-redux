@@ -243,7 +243,9 @@ class ChefText {
         throw new RuntimeException("ERROR: recipe " + i + " inconsistent")
       }
     }
+
     // TODO
+    // make sure break quque and loop structures empty
   }
 
   /* Print all the Chef lines contained in this object. */

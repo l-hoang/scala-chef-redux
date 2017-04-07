@@ -26,6 +26,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
     // TODO change this while true to something better?
     while (currentLine != mainLastLine || inFunction) {
+      println(currentLine)
       var nextLine = programText getLine currentLine
       var jumped = false
 
@@ -91,10 +92,10 @@ class ChefRunner(state: ChefState, text: ChefText) {
           currentLine = loopEnd
           jumped = true
 
-        case Call(function) =>
+        case Call(function) => println("call " + function);
           // change chef state to context switch to function
           programState.contextSwitch(programText, function)
-
+          returnStack prepend (currentLine + 1)
 
           // "jump" to function
           currentLine = programText getStartLine function
@@ -102,7 +103,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
           // set up return stack + line to "finish" function at
           functionEndLineStack prepend (programText getEndLine function)
-          returnStack prepend (currentLine + 1)
+
 
           inFunction = true
 
@@ -118,7 +119,8 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
       // check function end line stack; if we're at the end line, jump back
       // and restore state
-      if (currentLine == functionEndLineStack.head) {
+      if (!functionEndLineStack.isEmpty && 
+          currentLine == functionEndLineStack.head) {
         // restore program state
         programState.contextReturn
 
