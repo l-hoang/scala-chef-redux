@@ -586,13 +586,52 @@ class ScalaChefRedux {
 
   }
 
+  /* Serve _with <recipe> */
   object Serve {
+    // with is a keyword, so I have to use something else
+    def _with(recipe: String) = {
+      finishLine
 
+      lineBuilder setOp E_SERVE
+      lineBuilder setString recipe
+      lineBuilder.setFinished
+    }
+
+    // Random aliases you can use
+    def wth(recipe: String) = _with(recipe)
+    def wit(recipe: String) = _with(recipe)
+    def WITH(recipe: String) = _with(recipe)
+    def With(recipe: String) = _with(recipe)
+    def recipe(r: String) = _with(r)
+    def dish(r: String) = _with(r)
+    def along(r: String) = _with(r)
+    def plus(r: String) = _with(r)
   }
 
+  /* Refrigerate now
+   * Refrigerate for <number> hours */
   object Refrigerate {
+    // TODO
+    def now = {
 
+    }
+
+    def _for(num: Int) = {
+      finishLine
+
+      lineBuilder.assertMethod
+      lineBuilder setOp E_REFRIGERATE
+      // TODO
+    }
+
+    // aliases
+    def FOR(num: Int) = _for(num)
+    def For(num: Int) = _for(num)
+    def fOr(num: Int) = _for(num)
+    def f0r(num: Int) = _for(num)
+    def fr(num: Int) = _for(num)
   }
+
 
   object Recipe {
     def serves(numberOfDishes: Int) {

@@ -25,6 +25,8 @@ SOFTWARE.
 package scalachefredux
 
 import scala.collection.mutable
+import scala.collection.mutable.HashMap
+import scala.collection.mutable.ListBuffer
 
 /* Holds current program state */
 class ChefState {
@@ -40,6 +42,10 @@ class ChefState {
 
   var currentIngredients = new mutable.HashMap[String, ChefIngredient]
 
+  /* Stacks that hold things for a function call */
+  val bowlStack = new ListBuffer[HashMap[Int, ChefStack]]
+  val dishStack = new ListBuffer[HashMap[Int, ChefStack]]
+  val ingredientStack = new ListBuffer[HashMap[String, ChefIngredient]]
 
   def assertSetRecipe = if (!recipeSet) {
     throw new RuntimeException("ERROR: unset recipe")
@@ -211,6 +217,20 @@ class ChefState {
       val i = currentIngredients(ingredient)
       i.setValue(i.asNumber - 1)
     }
+  }
+
+  /* Switch to a particular function given its name */
+  def contextSwitch(text: ChefText, recipeName: String) = {
+    // TODO
+  }
+
+
+  /* Switch back to previous context, making sure to copy the first mixing bowl
+   * back to the caller */
+  def contextReturn = {
+    // TODO
+    
+
   }
 
   /* Prints the contents of the baking dishes: note it destroys the baking

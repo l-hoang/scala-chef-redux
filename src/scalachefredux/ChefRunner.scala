@@ -1,5 +1,7 @@
 package scalachefredux
 
+import scala.collection.mutable.ListBuffer
+
 /* This class is responsible for the actual running of the program */
 class ChefRunner(state: ChefState, text: ChefText) {
   val programState = state
@@ -13,6 +15,11 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
     // get the last line of the main function
     val mainLastLine = programText getEndLine programState.getMainRecipe
+
+    // return stack for function calls
+    val returnStack = new ListBuffer[Int]
+    // line ends for functions
+    val functionEndLineStack = new ListBuffer[Int]
 
     // initialize the starting ingredients
     programState initializeIngredients programText
@@ -80,10 +87,24 @@ class ChefRunner(state: ChefState, text: ChefText) {
           currentLine = loopBegin
           jumped = true
 
-
         case Break(loopEnd) =>
           currentLine = loopEnd
           jumped = true
+
+        case Call(function) =>
+          // TODO
+          // change chef state to context switch to function
+
+
+          // "jump" to function
+          currentLine = programText getStartLine function
+          jumped = true
+
+          // set up return stack + line to "finish" function at
+          functionEndLineStack prepend (programText getEndLine function)
+          returnStack prepend (currentLine + 1)
+
+          inFunction = true
 
         case PrintStacks(numToPrint) => println("print stacks " + numToPrint);
           programState.printDishes(numToPrint)
@@ -93,6 +114,19 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
       if (!jumped) {
         currentLine += 1
+      }
+
+      // check function end line stack; if we're at the end line, jump back
+      // and restore state
+      if (currentLine == functionEndLineStack.head) {
+        // restore program state
+
+        functionEndLineStack remove 0
+        if (functionEndLineStack.isEmpty) {
+          inFunction = false
+        }
+        // return to line to continue execution at
+        currentLine = returnStack remove 0
       }
     }
   }
