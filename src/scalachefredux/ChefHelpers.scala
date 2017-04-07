@@ -28,6 +28,7 @@ SOFTWARE.
 package scalachefredux
 
 import scala.collection.mutable
+import scala.collection.mutable.HashMap
 import java.util.ArrayDeque
 
 class ChefIngredient(name: String, interpretation: IState, initValue: Int = -1, 
@@ -234,7 +235,8 @@ class ChefStack {
     javaDeque.clear
   }
 
-  def deepCopy(otherStack: ChefStack) = {
+  /* Make this ChefStack a deep copy of the stack passed in */
+  def deepCopyInto(otherStack: ChefStack) = {
     if(!javaDeque.isEmpty) {
       throw new RuntimeException("ERROR: can only copy into this stack if empty")
     }
@@ -266,6 +268,19 @@ object HelperFunctions {
       copy(key) = toCopy(key).deepCopy
     }
   
+    copy
+  }
+
+  /* Returns a deep copy of a HashMap holding stacks */
+  def deepCopyStacks(toCopy: HashMap[Int, ChefStack]) = {
+    val copy = new HashMap[Int, ChefStack]
+
+    for (key <- toCopy.keys) {
+      val stackCopy = new ChefStack
+      stackCopy.deepCopyInto(toCopy(key))
+      copy(key) = stackCopy
+    }
+
     copy
   }
 }
