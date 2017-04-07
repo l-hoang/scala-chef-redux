@@ -47,6 +47,9 @@ object Tester4 extends ScalaChefRedux {
 
     Put the "filler" into the mixing bowl;
     Put the "one" into the mixing bowl;
+    Pour the contents of the mixing bowl into the baking dish; 
+    //Refrigerate _for 1 hour;
+    Refrigerate now;
     Put the "two" into the mixing bowl;
     Put the "three" into the mixing bowl;
 

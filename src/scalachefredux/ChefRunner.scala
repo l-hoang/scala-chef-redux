@@ -26,9 +26,10 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
     // TODO change this while true to something better?
     while (currentLine != mainLastLine || inFunction) {
-      println(currentLine)
+      //println(currentLine)
       var nextLine = programText getLine currentLine
       var jumped = false
+      var returned = false
 
       nextLine match {
         case Read(ingredient) => print("read " + ingredient);
@@ -106,6 +107,15 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
 
           inFunction = true
+        
+        case Return(-1) => 
+          jumped = true
+          returned = true
+
+        case Return(num) =>
+          programState.printDishes(num)
+          jumped = true
+          returned = true
 
         case PrintStacks(numToPrint) => println("print stacks " + numToPrint);
           programState.printDishes(numToPrint)
@@ -119,8 +129,8 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
       // check function end line stack; if we're at the end line, jump back
       // and restore state
-      if (!functionEndLineStack.isEmpty && 
-          currentLine == functionEndLineStack.head) {
+      if (returned || (!functionEndLineStack.isEmpty && 
+          currentLine == functionEndLineStack.head)) {
         // restore program state
         programState.contextReturn
 

@@ -34,9 +34,7 @@ case class Break(breakLine: Int) extends ChefLine // Set
 
 case class Call(recipe: String) extends ChefLine // Serve
 
+case class Return(num: Int) extends ChefLine
+
 case class PrintStacks(num: Int) extends ChefLine // Serves
-
-case object Useless extends ChefLine // To appease type checker
-
-// TODO
 

@@ -615,9 +615,13 @@ class ScalaChefRedux {
   /* Refrigerate now
    * Refrigerate for <number> hours */
   object Refrigerate {
-    // TODO
     def now = {
+      finishLine
 
+      lineBuilder.assertMethod
+      lineBuilder setOp E_REFRIGERATE
+      lineBuilder setNumber -1
+      lineBuilder.setFinished
     }
 
     def _for(num: Int) = {
@@ -625,7 +629,32 @@ class ScalaChefRedux {
 
       lineBuilder.assertMethod
       lineBuilder setOp E_REFRIGERATE
-      // TODO
+      lineBuilder setNumber num
+      
+      if (num <= 0) {
+        throw new RuntimeException("ERROR: hours can't be negative/0")
+      }
+
+      new HourGetter(num)
+    }
+
+
+    class HourGetter(h: Int) {
+      def hour = {
+        if (h > 1) {
+          throw new RuntimeException("ERROR: hour used for more than 1 hour")
+        }
+
+        lineBuilder.setFinished
+      }
+
+      def hours = {
+        if (h == 1) {
+          throw new RuntimeException("ERROR: hours used for 1 hour")
+        }
+
+        lineBuilder.setFinished
+      }
     }
 
     // aliases

@@ -27,16 +27,11 @@ class LineBuilder {
   // The current recipe being parsed by the line builder
   var currentRecipe = ""
 
-  // TODO kill if not needed
-  case object NULLINGREDIENT extends ChefIngredient("null", I_NULL)
-  
   // Various things that need to be used to build lines
   var heldString = ""
   var heldNumber = -1
   var stackNumber1 = -1 
   var stackNumber2 = -1
-  // TODO kill if not needed
-  var heldIngredient: ChefIngredient = NULLINGREDIENT
   var heldVerb = ""
 
   // mark if a line is ready to be returned
@@ -177,13 +172,6 @@ class LineBuilder {
   /* Set the second stack number. */
   def setStackNumber2(newNumber: Int) = stackNumber2 = newNumber
 
-  /* Set the held ingredient. */
-  // TODO kill if not needed
-  def setIngredient(newIngredient: ChefIngredient) = {
-    assertIngredient
-    heldIngredient = newIngredient
-  }
-
   /* Set the held verb */
   def setVerb(newVerb: String) = {
     assertMethod
@@ -197,7 +185,6 @@ class LineBuilder {
    * to some default value. */
   def clearData = {
     currentOp = E_NONE
-    heldIngredient = NULLINGREDIENT // TODO kill if not needed
     heldString = ""
     heldNumber = -1
     stackNumber1 = -1
@@ -211,11 +198,8 @@ class LineBuilder {
   //////////////////////
   /* Methods used to access the line builder */
 
-
-
   /* Return a line with the appropriate information filled in. */
   def finishLine = {
-    // TODO
     assertLineFinished
     var toReturn: ChefLine = currentOp match {
       case E_TAKE => Read(heldString)
@@ -243,8 +227,10 @@ class LineBuilder {
 
       case E_SERVE => Call(heldString)
 
+      case E_REFRIGERATE => Return(heldNumber)
+
       case E_SERVES => PrintStacks(heldNumber)
-      case _ => throw new RuntimeException("Valid op not set for finish line")
+      case E_NONE => throw new RuntimeException("ERROR: finishing E_NONE")
     }
 
     if (currentOp == E_SERVES) {
