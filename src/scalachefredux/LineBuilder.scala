@@ -160,6 +160,7 @@ class LineBuilder {
   def setOp(newOp: ChefOp) = {
     assertMethod
     // TODO make it so certain ops can't be changed (i.e. most of them)
+    // not important
     currentOp = newOp
   }
 

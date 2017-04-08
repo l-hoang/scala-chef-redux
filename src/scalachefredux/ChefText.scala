@@ -118,7 +118,6 @@ class ChefText {
   def addLine(newLine: ChefLine) = {
     lines(currentLine) = newLine 
 
-    // TODO
     newLine match {
       case LoopStart(heldVerb, ingredientToCheck, -1) =>
         val newLoop = new LoopInfo
@@ -204,7 +203,6 @@ class ChefText {
     functions(functionName) = new FunctionInfo
     functions(functionName) setStartLine currentLine
     currentFunction = functionName
-    //currentLine += 1 // TODO do I need to add a line? I shouldn't, right?
 
     // initialize start ingredients for this recipe
     recipeIngredients(functionName) = new mutable.HashMap[String, ChefIngredient]

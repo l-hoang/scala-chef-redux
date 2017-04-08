@@ -10,7 +10,6 @@ class ChefRunner(state: ChefState, text: ChefText) {
   /* Run the program starting from line 1 */
   def run = {
     var currentLine = 1
-    // TODO get rid of this, replace with something better
     var inFunction = false
 
     // get the last line of the main function
@@ -24,7 +23,6 @@ class ChefRunner(state: ChefState, text: ChefText) {
     // initialize the starting ingredients
     programState initializeIngredients programText
 
-    // TODO change this while true to something better?
     while (currentLine != mainLastLine || inFunction) {
       //println(currentLine)
       var nextLine = programText getLine currentLine
@@ -119,8 +117,6 @@ class ChefRunner(state: ChefState, text: ChefText) {
 
         case PrintStacks(numToPrint) => //println("print stacks " + numToPrint);
           programState.printDishes(numToPrint)
-
-        case x => throw new RuntimeException("Invalid line for ChefRunner " + x)
       }
 
       if (!jumped) {
