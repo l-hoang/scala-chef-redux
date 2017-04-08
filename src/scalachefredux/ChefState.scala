@@ -209,8 +209,9 @@ class ChefState {
   }
 
   /* Returns boolean if ingredient has a current value of zero */
-  def ingredientIsZero(ingredient: String) = 
+  def ingredientIsZero(ingredient: String) = {
     currentIngredients(ingredient).asNumber == 0
+  }
 
   def decrementIngredient(ingredient: String) = {
     if (ingredient != "") {

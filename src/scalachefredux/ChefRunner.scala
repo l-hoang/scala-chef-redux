@@ -84,7 +84,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
             jumped = true
           }
 
-        case LoopEnd(verb, decrement, loopBegin) =>
+        case LoopEnd(verb, decrement, loopBegin) => println("loop end " + decrement);
           programState.decrementIngredient(decrement)
           currentLine = loopBegin
           jumped = true
