@@ -244,8 +244,13 @@ class ChefText {
       }
     }
 
-    // TODO
-    // make sure break quque and loop structures empty
+    if (!breakQueue.isEmpty) {
+      throw new RuntimeException("ERROR: break queue not empty")
+    }
+
+    if (!loopStack.isEmpty) {
+      throw new RuntimeException("ERROR: loop stack not empty")
+    }
   }
 
   /* Print all the Chef lines contained in this object. */
