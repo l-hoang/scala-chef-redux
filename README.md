@@ -83,13 +83,19 @@ I do not guarantee the code will function).
 `Method`
 
 `Take the/a/an/some  "<ingredient>" from the refrigerator`
+
 `Put the/a/an/some "<ingredient>" into mixing bowl <number>`
+
 `Put the/a/an/some "<ingredient>" into the mixing bowl` (defaults to the first
 mixing bowl)
+
 `Fold the/a/an/some "<ingredient>" into mixing bowl <number>`
+
 `Fold the/a/an/some "<ingredient>" into the mixing bowl` (defaults to the first
 mixing bowl)
+
 `Add the/a/an/some "<ingredient>" [to the mixing bowl]` (defaults to first)
+
 `Add the/a/an/some "<ingredient>" [to mixing bowl <number>]` (defaults to first)
 
 
