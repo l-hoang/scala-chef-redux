@@ -96,9 +96,25 @@ mixing bowl)
 
 `Add the/a/an/some "<ingredient>" [to the mixing bowl]` (defaults to first)
 
-`Add the/a/an/some "<ingredient>" [to mixing bowl <number>]` (defaults to first)
+`Add the/a/an/some "<ingredient>" [to mixing bowl <number>]`
 
 
+`Remove the/a/an/some "<ingredient>" [from the mixing bowl]` (defaults to first)
+
+`Remove the/a/an/some "<ingredient>" [from mixing bowl <number>]`
+
+
+`Combine the/a/an/some "<ingredient>" [into the mixing bowl]` (defaults to first)
+
+`Combine the/a/an/some "<ingredient>" [into mixing bowl <number>]`
+
+`Divide the/a/an/some "<ingredient>" [into the mixing bowl]` (defaults to first)
+
+`Divide the/a/an/some "<ingredient>" [into mixing bowl <number>]` 
+
+`Add dry ingredients to mixing bowl <number>`
+
+`Add dry ingredients to the mixing bowl` (defaults to first)
 
 
 
