@@ -110,9 +110,7 @@ object GuessingGame extends ScalaChefRedux {
       "Level" until "leveled";
     "Guess" until "guessed";
 
-    // TODO fix this
     Recipe serves 1;
-
 
     // Asks for a guess
     Title - "Prompt Pudding";
