@@ -32,50 +32,50 @@ class ChefRunner(state: ChefState, text: ChefText) {
       var returned = false
 
       nextLine match {
-        case Read(ingredient) => print("read " + ingredient);
+        case Read(ingredient) => //print("read " + ingredient);
           programState.take(ingredient)
 
-        case Push(ingredient, bowlNumber) => println("push " + ingredient);
+        case Push(ingredient, bowlNumber) => //println("push " + ingredient);
           programState.pushToBowl(ingredient, bowlNumber)
 
-        case Pop(bowlNumber, ingredient) => println("pop " + bowlNumber);
+        case Pop(bowlNumber, ingredient) => //println("pop " + bowlNumber);
           programState.popToIngredient(bowlNumber, ingredient)
         
-        case Add(ingredient, bowlNumber) => println("add " + ingredient);
+        case Add(ingredient, bowlNumber) => //println("add " + ingredient);
           programState.addOp(ingredient, bowlNumber)
 
-        case Subtract(ingredient, bowlNumber) => println("subtract " + ingredient);
+        case Subtract(ingredient, bowlNumber) => //println("subtract " + ingredient);
           programState.subOp(ingredient, bowlNumber)
 
-        case Multiply(ingredient, bowlNumber) => println("multiply " + ingredient);
+        case Multiply(ingredient, bowlNumber) => //println("multiply " + ingredient);
           programState.mulOp(ingredient, bowlNumber)
 
-        case Divide(ingredient, bowlNumber) => println("divide " + ingredient);
+        case Divide(ingredient, bowlNumber) => //println("divide " + ingredient);
           programState.divOp(ingredient, bowlNumber)
 
-        case AddDry(bowlNumber) => println("add dry " + bowlNumber);
+        case AddDry(bowlNumber) => //println("add dry " + bowlNumber);
           programState.addDry(bowlNumber)
 
-        case Liquefy(ingredient) => println("liquefy " + ingredient);
+        case Liquefy(ingredient) => //println("liquefy " + ingredient);
           programState.liquefyIngredient(ingredient)
 
-        case LiquefyContents(bowlNumber) => println("liquefy " + bowlNumber);
+        case LiquefyContents(bowlNumber) => //println("liquefy " + bowlNumber);
           programState.liquefyBowl(bowlNumber)
 
-        case Stir(stirNum, bowlNumber) => println("stir " + stirNum);
+        case Stir(stirNum, bowlNumber) => //println("stir " + stirNum);
           programState.stir(stirNum, bowlNumber)
 
-        case StirIngredient(ingredient, bowlNumber) => println("stir I" + ingredient);
+        case StirIngredient(ingredient, bowlNumber) => //println("stir I" + ingredient);
           programState.stirIngredient(ingredient, bowlNumber)
 
-        case Mix(bowlNumber) => println("mix " + bowlNumber);
+        case Mix(bowlNumber) => //println("mix " + bowlNumber);
           programState.mix(bowlNumber)
 
-        case ClearStack(bowlNumber) => println("clear " + bowlNumber);
+        case ClearStack(bowlNumber) => //println("clear " + bowlNumber);
           programState.clearBowl(bowlNumber)
 
         case CopyStack(bowlNumber, dishNumber) => 
-          println("copy " + bowlNumber + dishNumber)
+          //println("copy " + bowlNumber + dishNumber)
           programState.bowlToDish(bowlNumber, dishNumber)
 
         case LoopStart(verb, check, loopEnd) =>
@@ -84,7 +84,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
             jumped = true
           }
 
-        case LoopEnd(verb, decrement, loopBegin) => println("loop end " + decrement);
+        case LoopEnd(verb, decrement, loopBegin) => //println("loop end " + decrement);
           programState.decrementIngredient(decrement)
           currentLine = loopBegin
           jumped = true
@@ -93,7 +93,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
           currentLine = loopEnd
           jumped = true
 
-        case Call(function) => println("call " + function);
+        case Call(function) => //println("call " + function);
           // change chef state to context switch to function
           programState.contextSwitch(programText, function)
           returnStack prepend (currentLine + 1)
@@ -117,7 +117,7 @@ class ChefRunner(state: ChefState, text: ChefText) {
           jumped = true
           returned = true
 
-        case PrintStacks(numToPrint) => println("print stacks " + numToPrint);
+        case PrintStacks(numToPrint) => //println("print stacks " + numToPrint);
           programState.printDishes(numToPrint)
 
         case x => throw new RuntimeException("Invalid line for ChefRunner " + x)
