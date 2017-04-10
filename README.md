@@ -141,6 +141,10 @@ Finally, for lines that start with an integer or a string, I use implicit
 conversion to change it into a class. At that point, the same theory behind
 how the calls work out as explained above applies.
 
+## How It Works (Semantically)
+
+TODO explanation of how parsing + evaluation works
+
 ## Syntax
 
 Syntax is similar, but not exactly the same as Chef. The operations are the 
