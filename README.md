@@ -66,7 +66,7 @@ You have access to ScalaChef syntax in this object due to this extension.
 See the example programs and the original Chef spec in order to get an idea for
 the syntax/how it works.
 
-## How It Works
+## How It Works (Syntactically)
 
 The DSL takes advantage of Scala syntactic sugar.
 
@@ -88,6 +88,10 @@ Therefore, Scala will attempt to call the function `D` with argument `E` from
 the object that is returned by `A.B(C)`. Due to this restriction of sorts,
 then, arguments can only be passed in through the 3rd, 5th, 7th, 9th, ... slots
 of a line.
+
+Finally, for lines that start with an integer or a string, I use implicit
+conversion to change it into a class. At that point, the same theory behind
+how the calls work out as explained above applies.
 
 ## Syntax
 
