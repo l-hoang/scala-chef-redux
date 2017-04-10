@@ -206,3 +206,130 @@ I do not guarantee the code will function).
 
 
 `Enjoy your meal` (should appear at the end to start the program execution)
+
+## Desugared Syntax
+
+This section gives you an idea of how these calls are actually changed
+together.
+
+If you check the actual code, you will find that I am returning an object
+with the next method defined. For exaple, for `(Take.the(ingredient)).from(the)`,
+you will find that I return an object that has a `from` method defined.
+
+To parse the tokens of the line (e.g. the), I define an object that corresponds
+to said token and just have the argument of the function that takes the token
+be the type of that token.
+
+Note that there are cases where I return an object to continue parsing
+optional things in a line. In order to prevent Scala from trying to grab
+the first token in the next line as the argument (which it will do if
+you don't put a blank line between 2 lines), I recommend above that all
+lines end with a semi-colon since it will shut down the syntactic sugar
+in some sense.
+
+
+`Title.-(<insert title here>)`
+
+`Ingredients` (It's a function)
+
+`Method` (It's a function)
+
+
+`((Take.the(<ingredient>)).from(the)).refrigerator`
+
+
+`((Put.the(<ingredient>)).into(mixing)).bowl(<number>)`
+
+`((Put.the(<ingredient>)).into(the)).mixing(bowl)`
+
+
+`((Fold.the(<ingredient>)).into(the)).mixing(bowl)`
+
+`((Fold.the(<ingredient>)).into(mixing)).bowl(<number>)`
+
+
+`((Add.the(<ingredient>)).to(the)).mixing(bowl)`
+
+`((Add.the(<ingredient>)).to(mixing)).bowl(<number>)`
+
+
+`((Remove.the(<ingredient>)).from(the)).mixing(bowl)`
+
+`((Remove.the(<ingredient>)).from(mixing)).bowl(<number>)`
+
+
+`((Combine.the(<ingredient>)).into(the)).mixing(bowl)`
+
+`((Combine.the(<ingredient>)).into(mixing)).bowl(<number>)`
+
+
+`((Divide.the(<ingredient>)).into(the)).mixing(bowl)`
+
+`((Divide.the(<ingredient>)).into(mixing)).bowl(<number>)` 
+
+
+`((Add.dry(ingredients)).to(the)).mixing(bowl)`
+
+`((Add.dry(ingredients)).to(mixing)).bowl(<number>)`
+
+
+`Liquefy.the(<ingredient>)`
+
+`((Liquefy.the(contents)).of(the)).mixing(bowl)`
+
+`((Liquefy.the(contents)).of(mixing)).bowl(<number>)`
+
+
+`(Stir.for(<number>)).minutes`
+
+`((Stir.bowl(<number>))._for(<number>)).minutes`
+
+`((Stir.the(bowl))._for(<number>)).minutes`
+
+`((Stir.the(<ingredient>)).into(the)).mixing(bowl)`
+
+`((Stir.the(<ingredient>)).into(mixing)).bowl(<number>)`
+
+
+`(Mix.the(bowl)).well` 
+
+`(Mix.bowl(<number>)).well`
+
+
+`Clean.the(bowl)`
+
+`Clean.bowl(<number>)`
+
+
+`((((Pour.the(contents)).of(the)).mixing(bowl)).into(the)).baking(dish)`
+
+`((((Pour.the(contents)).of(mixing)).bowl(<number>)).into(the)).baking(dish)`
+
+`((((Pour.the(contents)).of(the)).mixing(bowl)).into(baking)).dish(<number>)`
+
+`((((Pour.the(contents)).of(mixing)).bowl(<number>)).into(baking)).dish(<number>)`
+
+
+An implicit converts the string (verb) into a class with the appropriate
+methods.
+
+`<verb>.the(<ingredient>)`
+
+`(<verb>.the(<ingredient>)).until(<verbed>)"`
+
+`<verb>.until(<verbed>)`
+
+
+`Set.aside`
+
+
+`Serve._with(<auxiliary-recipe>)"`
+
+
+`Refrigerate.now`
+
+`(Refrigerate.for(<number>).hours)`
+
+
+`Enjoy.your(meal)`
+
