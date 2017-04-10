@@ -19,6 +19,9 @@ http://www.dangermouse.net/esoteric/chef.html
 * No heaped or level commands
 * No cooking time specification
 * `<num> <ingredient>` doesn't work; need to do `<num> ct <ingredient>`
+* Syntax differences from actual Chef to get around Scala code conventions
+and syntax (e.g. "with" and "for" not working due to being keywords)
+* Requiring "Enjoy your meal" at the end to start execution
 
 TODO?
 
@@ -62,6 +65,29 @@ object Tester extends ScalaChefRedux {
 You have access to ScalaChef syntax in this object due to this extension.
 See the example programs and the original Chef spec in order to get an idea for
 the syntax/how it works.
+
+## How It Works
+
+The DSL takes advantage of Scala syntactic sugar.
+
+The beginning of lines are represented by Scala objects, and the continuation 
+of the line (i.e. the next word) is represented as a function call from the
+object. For example `Do this` in Scala translates into `Do.this`. 
+
+Note that if there are more than 3 words in a line, Scala will treat it like
+an object calling a function with an argument. For example `A B C` is `A.B(C)`.
+Working around this restriction means that you may have to add extra tokens
+to some lines to make things come out "evenly". Additionally, this restriction
+forces things that you want to be arguments into certain positions in the line.
+
+For lines longer than 3 words, the following structure applies:
+
+`A B C D E F G` = `((A.B(C)).D(E)).F(G)`
+
+Therefore, Scala will attempt to call the function `D` with argument `E` from
+the object that is returned by `A.B(C)`. Due to this restriction of sorts,
+then, arguments can only be passed in through the 3rd, 5th, 7th, 9th, ... slots
+of a line.
 
 ## Syntax
 
@@ -173,3 +199,6 @@ I do not guarantee the code will function).
 `Refrigerate now`
 
 `Refrigerate for <number> hours`
+
+
+`Enjoy your meal` (should appear at the end to start the program execution)
