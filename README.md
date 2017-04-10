@@ -84,37 +84,92 @@ I do not guarantee the code will function).
 
 `Take the/a/an/some  "<ingredient>" from the refrigerator`
 
+
 `Put the/a/an/some "<ingredient>" into mixing bowl <number>`
 
-`Put the/a/an/some "<ingredient>" into the mixing bowl` (defaults to the first
-mixing bowl)
+`Put the/a/an/some "<ingredient>" into the mixing bowl`
+
+
+`Fold the/a/an/some "<ingredient>" into the mixing bowl`
 
 `Fold the/a/an/some "<ingredient>" into mixing bowl <number>`
 
-`Fold the/a/an/some "<ingredient>" into the mixing bowl` (defaults to the first
-mixing bowl)
 
-`Add the/a/an/some "<ingredient>" [to the mixing bowl]` (defaults to first)
+`Add the/a/an/some "<ingredient>" [to the mixing bowl]`
 
 `Add the/a/an/some "<ingredient>" [to mixing bowl <number>]`
 
 
-`Remove the/a/an/some "<ingredient>" [from the mixing bowl]` (defaults to first)
+`Remove the/a/an/some "<ingredient>" [from the mixing bowl]`
 
 `Remove the/a/an/some "<ingredient>" [from mixing bowl <number>]`
 
 
-`Combine the/a/an/some "<ingredient>" [into the mixing bowl]` (defaults to first)
+`Combine the/a/an/some "<ingredient>" [into the mixing bowl]`
 
 `Combine the/a/an/some "<ingredient>" [into mixing bowl <number>]`
 
-`Divide the/a/an/some "<ingredient>" [into the mixing bowl]` (defaults to first)
+
+`Divide the/a/an/some "<ingredient>" [into the mixing bowl]`
 
 `Divide the/a/an/some "<ingredient>" [into mixing bowl <number>]` 
 
+
+`Add dry ingredients to the mixing bowl`
+
 `Add dry ingredients to mixing bowl <number>`
 
-`Add dry ingredients to the mixing bowl` (defaults to first)
+
+`Liquefy the "<ingredient>"`
+
+`Liquefy the contents of the mixing bowl`
+
+`Liquefy the contents of mixing bowl <number>`
 
 
+`Stir for <number> minutes`
 
+`Stir bowl <number> _for <number> minutes`
+
+`Stir the bowl _for <number> minutes`
+
+`Stir the/a/an/some "<ingredient>" into the mixing bowl`
+
+`Stir the/a/an/some "<ingredient>" into mixing bowl <number>`
+
+
+`Mix the bowl well` 
+
+`Mix bowl <number> well`
+
+
+`Clean the bowl`
+
+`Clean bowl <number>` 
+
+
+`Pour the contents of the mixing bowl into the baking dish`
+
+`Pour the contents of mixing bowl <number> into the baking dish`
+
+`Pour the contents of the mixing bowl into baking dish <number>`
+
+`Pour the contents of mixing bowl <number> into baking dish <number>`
+
+
+`"<verb>" the/a/an/some "<ingredient>"`
+
+`"<verb>" the/a/an/some "<ingredient>" until "<verbed>"`
+
+`"<verb>" until "<verbed>"`
+
+
+`Set aside`
+
+
+`Serve _with "<auxiliary-recipe>"`
+
+
+`Refrigerate now`
+
+`Refrigerate for <number> hours`
