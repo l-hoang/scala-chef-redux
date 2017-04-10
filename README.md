@@ -66,6 +66,54 @@ You have access to ScalaChef syntax in this object due to this extension.
 See the example programs and the original Chef spec in order to get an idea for
 the syntax/how it works.
 
+## Files Overview
+
+Explanation of files located in `src/scalachefredux`.
+
+
+### ChefHelpers.scala
+
+Contains the helper classes `ChefIngredient` and `ChefStack`, which
+represent a Chef Ingredient and stack for holding ingredients respectively.
+There are also helper functions for copying state.
+
+### ChefLines.scala
+
+Contains case class definitions for the different Chef lines (corresponding
+to different Chef operations).
+
+### ChefRunner.scala
+
+Contains the ChefRunner class which given a program state and program
+text will be responsible for running the program by going through
+the text and updating the program state.
+
+### ChefState.scala
+
+Contains the ChefState class which holds all of the "runtime information"
+and state for a running Chef program.
+
+### ChefText.scala
+
+Contains the ChefText class which holds the lines that are parsed in order
+to be run later.
+
+### Enums.scala
+
+Contains various enumerations (case objects) for the code. Notably contains
+the objects for certain words so that they can be parsed.
+
+### LineBuilder.scala
+
+Contains the LineBuilder class which is what builds ChefLines by being
+fed information by the main parser.
+
+### ScalaChefRedux.scala
+
+The main parser: extending the ScalaChefRedux class will allow you to write
+programs in ScalaChefRedux. Works in conjunction with the LineBuilder
+to parse and build lines to provide to the program text.
+
 ## How It Works (Syntactically)
 
 The DSL takes advantage of Scala syntactic sugar.
