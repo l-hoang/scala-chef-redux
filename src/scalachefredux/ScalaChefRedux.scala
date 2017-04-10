@@ -557,6 +557,12 @@ class ScalaChefRedux {
       UntilGetter
     }
 
+    // the aliases
+    def a(ingredient: String) = the(ingredient)
+    def an(ingredient: String) = the(ingredient)
+    def some(ingredient: String) = the(ingredient)
+
+
     def until(lVerb: String) = {
       finishLine
 
