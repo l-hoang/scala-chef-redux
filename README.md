@@ -143,7 +143,22 @@ how the calls work out as explained above applies.
 
 ## How It Works (Semantically)
 
-TODO explanation of how parsing + evaluation works
+This is going to be a high level overview of how parsing/evaluation works
+while trying to avoid the specifics of ScalaChefRedux (as to be useful to
+the DSL builders at large and not justp for understanding ScalaChefRedux).
+
+The ScalaChefRedux class has defined keywords of the language as objects
+and/or functions. When Scala runs into one of these keywords, it is
+interpreted as an object that calls some method with some argument (see
+above). The definition of the methods themselves are just hooks into another
+class that is responsible for building the lines based on the information
+that the parser gives it. The lines are saved with the necessary
+information needed to evaluate them.
+
+When parsing is complete, the program accesses the saved lines from
+the beginning (or wherever the start point happens to be) and begins
+execution based on the current line being accessed. Execution can
+update the program state.
 
 ## Syntax
 
