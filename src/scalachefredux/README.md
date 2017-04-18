@@ -330,9 +330,17 @@ clean first 100 houses
 
 Recall Scala reads this as `(clean.first(100)).houses`. `applyDynamic` works
 by treating the 2nd token as a method call even if the method is undefined
-(note we didn't have to define `first` as a method). This does not
+(note we didn't have to define `first` as a method). This method call
+can take an arbitrary number of arguments, but such arguments
+must be wrapped in parens. Therefore, without parens, Dynamic does not 
 get around the 3-2-2-2... call structure Scala has for parsing its
 space separated lines.
+
+If you only had 3 tokens, then Scala handles it since you 
+have your `object.method(argument)` construction, which works with `applyDynamic`.
+The second argument is your method call, and the third is the argument. Since
+the method call itself is translated into a String, you can use it as an
+argument as well.
 
 
 ## Final Notes
