@@ -218,61 +218,6 @@ Each successive method call needs to return an object that as a method with the
 name of the next token, and the method must take an argument of the token 
 after that if your line allows a token after that.
 
-## Limitations
-
-### 3-5-7-9-... Arguments 
-
-If you want to keep your lines parenthesis-free, then Scala will generally 
-always parse the lines above with the 3-2-2-2-2... calling order. The 
-consequence of this is that your arguments generaly can only appear as the 
-3rd-5th-7th-...  tokens of a line.
-
-One way to work around this is to add filler words. Say I wanted to make the
-second token of this line an argument.
-
-```
-Take 30 pieces
-```
-
-Using the constructions above, 30 cannot be your argument. What you do is to move
-it to the 3rd token slot with a filler word.
-
-```
-Please take 30 pieces
-```
-
-You could then parse this line with the following construction:
-
-```
-object Please {
-  def take(num: Int) = {
-    // do things
-
-    PieceGetter
-  }
-
-  object PieceGetter {
-    def pieces = {
-      // do things
-    }
-  }
-}
-```
-
-The consequence is that it makes your lines unnecessarily verbose, and it may
-stray from an original specification if you are converting another language 
-into a DSL.
-
-### Reserved Keywords
-
-Say I wanted to have the following line in my internal DSL.
-
-```
-Clean while bored
-```
-
-This line is not possible: `while` is a reserved keyword for loops in Scala.
-Generally speaking, reserved Scala keywords cannot become keywords in your DSL.
 
 
 ## The Dynamic Class: Another Possibility for 3 Token Lines
@@ -341,6 +286,62 @@ have your `object.method(argument)` construction, which works with `applyDynamic
 The second argument is your method call, and the third is the argument. Since
 the method call itself is translated into a String, you can use it as an
 argument as well.
+
+## Limitations
+
+### 3-5-7-9-... Arguments 
+
+If you want to keep your lines parenthesis-free, then Scala will generally 
+always parse the lines above with the 3-2-2-2-2... calling order. The 
+consequence of this is that your arguments generaly can only appear as the 
+3rd-5th-7th-...  tokens of a line.
+
+One way to work around this is to add filler words. Say I wanted to make the
+second token of this line an argument.
+
+```
+Take 30 pieces
+```
+
+Using the constructions above, 30 cannot be your argument. What you do is to move
+it to the 3rd token slot with a filler word.
+
+```
+Please take 30 pieces
+```
+
+You could then parse this line with the following construction:
+
+```
+object Please {
+  def take(num: Int) = {
+    // do things
+
+    PieceGetter
+  }
+
+  object PieceGetter {
+    def pieces = {
+      // do things
+    }
+  }
+}
+```
+
+The consequence is that it makes your lines unnecessarily verbose, and it may
+stray from an original specification if you are converting another language 
+into a DSL.
+
+### Reserved Keywords
+
+Say I wanted to have the following line in my internal DSL.
+
+```
+Clean while bored
+```
+
+This line is not possible: `while` is a reserved keyword for loops in Scala.
+Generally speaking, reserved Scala keywords cannot become keywords in your DSL.
 
 
 ## Final Notes
